@@ -10,6 +10,13 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    phone_number = db.Column(db.Integer, unique=True)
+    bio = db.Column(db.String(150))
+    profile_image_url = db.Column(db.String())
+
+    tweets = db.relationship('Tweet', back_populates="user")
+    comments = db.relationship('Comment', back_populates='user')
+    likes = db.relationship('Like', back_populates='user')
 
     @property
     def password(self):
@@ -26,5 +33,8 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'phone-number': self.phone_number,
+            'bio': self.bio,
+            'profile_image_url': self.profile_image_url
         }
