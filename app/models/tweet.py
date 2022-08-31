@@ -1,26 +1,25 @@
 from .db import db
 
-
 class Tweet(db.Model):
+
     __tablename__ = 'tweets'
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     description = db.Column(db.String(280), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     likes = db.Column(db.Integer, default=0)
     image_url = db.Column(db.String, nullable=False)
     display_comments = db.Column(db.Boolean, default=True)
+    
+    user = db.relationship("User", back_populates="tweet")
+    comments = db.relationship("Comment", back_populates="tweet", cascade="all, delete-orphan")
+    like_list = db.relationship("Like", back_populates="tweet", cascade="all, delete-orphan")
 
-    user = db.relationship("User", back_populates="tweets")
-    comments = db.relationship(
-        "Comment", back_populates="tweets", cascade="all, delete-orphan")
-    like_list = db.relationship(
-        "Like", back_populates="tweets", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
             "id": self.id,
-            "description": self.description,
+            "discription": self.description,
             "user": self.user.to_dict(),
             "likes": self.likes,
             "like_list": [like.to_dict() for like in self.like_list],
@@ -32,7 +31,7 @@ class Tweet(db.Model):
     def __repr__(self):
         return f"""
             < Tweet ID: {self.id}\n
-              Description: {self.caption}\n
+              Discription: {self.description}\n
               User: {self.user.to_dict()}\n
               Likes: {self.likes}\n
               Image URL: {self.image_url} >
