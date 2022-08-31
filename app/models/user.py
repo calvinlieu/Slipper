@@ -13,10 +13,10 @@ class User(db.Model, UserMixin):
     phone_number = db.Column(db.Integer, unique=True)
     bio = db.Column(db.String(150))
     profile_image_url = db.Column(db.String())
-
-    tweets = db.relationship('Tweet', back_populates="user")
+    
+    tweet = db.relationship('Tweet', back_populates="user")
     comments = db.relationship('Comment', back_populates='user')
-    # likes = db.relationship('Like', back_populates='user')
+    likes = db.relationship('Like', back_populates='user')
 
     @property
     def password(self):

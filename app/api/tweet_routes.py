@@ -84,3 +84,45 @@ def delete_tweet(tweet_id):
     db.session.commit()
     
     return "Successfully Deleted"
+
+
+#get all comments by tweet ID
+@tweet_routes.route("/<tweet_id>/comments")
+def tweet_comments(tweet_id):
+    comments = Comment.query.filter(Comment.tweet_id == tweet_id ).all()
+
+    if not comments:
+        return "Error 404: The comments you're looking for couldn't be found"
+
+    response = [comment.to_dict() for comment in comments]
+    res = { "comments": response }
+    return res
+
+
+#posting a comment on a tweet
+@tweet_routes.route("/<tweet_id>/comments", methods=['POST'])
+def add_comment(tweet_id):
+    comment_form = CommentForm()
+
+    content = comment_form.data['content']
+    user_id = comment_form.data['user_id']
+    tweet_id = comment_form.data['tweet_id']
+
+    comment_form['csrf_token'].data = request.cookies['csrf_token']
+    if comment_form.validate_on_submit() and current_user.id == user_id:
+
+        comment = Comment(
+            content=content,
+            user_id=user_id,
+            tweet_id=tweet_id
+        )
+
+        tweet = Tweet.query.get(tweet_id)
+
+        comment.tweet = tweet
+
+        db.session.add(comment)
+        db.session.commit()
+        return comment.to_dict()
+    else:
+        return '403: unauthorized user'
