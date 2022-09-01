@@ -1,15 +1,15 @@
-import React from 'react'
-import './SplashPage.css'
-const SplashPage = () => {
-  return (
-    <div className='splash-container'>
-      <div className='splash-image'>
-      </div>
-      <div>
-        <h1>Happening now</h1>
-      </div>
-    </div>
-  )
-}
+// import React from 'react'
+// import './SplashPage.css'
+// const SplashPage = () => {
+//   return (
+//     <>
+//     <div className='splash-container'>
+//         <img className='splash-image' src="https://i.imgur.com/Qfj09lS.png"/>
+//     </div>
+//       <div>
+//       </div>
+//     </>
+//   )
+// }
 
-export default SplashPage
+// export default SplashPage

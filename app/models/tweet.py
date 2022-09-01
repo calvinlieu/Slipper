@@ -19,7 +19,7 @@ class Tweet(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "discription": self.description,
+            "description": self.description,
             "user": self.user.to_dict(),
             "likes": self.likes,
             "like_list": [like.to_dict() for like in self.like_list],
@@ -31,7 +31,7 @@ class Tweet(db.Model):
     def __repr__(self):
         return f"""
             < Tweet ID: {self.id}\n
-              Discription: {self.description}\n
+              Description: {self.description}\n
               User: {self.user.to_dict()}\n
               Likes: {self.likes}\n
               Image URL: {self.image_url} >
