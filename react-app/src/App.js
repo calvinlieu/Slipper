@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import SplashPage from './components/SplashPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -29,7 +30,10 @@ function App() {
       <NavBar />
       <Switch>
         <Route path='/login' exact={true}>
+          <div className='splash-login'>
           <LoginForm />
+          <SplashPage />
+          </div>
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />

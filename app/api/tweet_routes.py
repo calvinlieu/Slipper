@@ -22,7 +22,7 @@ def user_home():
 def user_tweet():
     new_tweet = TweetForm()
 
-    new_tweet['csrf_token'].data = request.cookies['csrf.token']
+    new_tweet['csrf_token'].data = request.cookies['csrf_token']
     user_id = new_tweet.data['user_id']
     description = new_tweet.data['description']
     image_url = new_tweet.data['image_url']

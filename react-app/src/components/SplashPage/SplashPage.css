@@ -1,0 +1,10 @@
+/* body {
+    background-color: rgba(29 161 242);
+} */
+.splash-image{
+    display: flex;
+    background-image: url("./twitter\ homepage.png");
+    background-repeat: no-repeat;
+    width: 450px;
+    height: 581px;
+}
