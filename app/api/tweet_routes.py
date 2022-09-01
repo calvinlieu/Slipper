@@ -38,7 +38,7 @@ def user_tweet():
         db.session.commit()
         return tweet.to_dict()
     else:
-        return '403: Unauthorized User'
+        return 'Unauthorized User', 403
 
 
 # edit a tweet

@@ -1,0 +1,8 @@
+.imgDiv {
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    border-radius: 33px;
+    object-fit: contain;
+    margin: 1rem;
+}
