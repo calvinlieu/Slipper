@@ -56,11 +56,6 @@ const SignUpForm = () => {
       <div className="home-page">
         <img className="splash-image" src="https://i.imgur.com/Qfj09lS.png" />
         <div className="signup-page">
-        <div className="header" >
-          <Link to="https://github.com/calvinlieu">
-          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" className="github-link"/>
-          </Link>
-        </div>
           <img
             className="twitter-icon"
             src="https://cdn-icons-png.flaticon.com/512/124/124021.png"
@@ -140,6 +135,17 @@ const SignUpForm = () => {
             >
               Sign In
             </button>
+          </div>
+          <div className="header">
+            <div>Created By: Calvin Lieu</div>
+            <div className="HomePage-LinkedIn">
+              <img alt="" src= "react-app/src/components/SplashPage/LinkedIn_Logo.svg.png"className="HomePage-logos" />
+              <a className="link-text" href="https://www.linkedin.com/in/calvin-lieu-3049b4228/">LinkedIn</a>
+            </div>
+            <div className="HomePage-GitHub">
+              <img alt="" className="HomePage-logos" />
+              <a className="link-text" href="https://github.com/calvinlieu">GitHub</a>
+            </div>
           </div>
         </div>
       </div>
