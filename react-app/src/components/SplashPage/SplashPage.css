@@ -105,10 +105,25 @@
 .header {
   text-decoration: none;
   margin-left: 30px;
-  margin-top: 25px;
+  margin-top: 75px;
+  display: flex;
+  flex-direction: row;
 }
 
 .github-link {
   width: 50px;
   margin-left: 30px;
+}
+
+.HomePage-LinkedIn {
+  margin-left: 10px;
+}
+
+.HomePage-GitHub {
+  margin-left: 10px;
+  
+}
+
+.link-text {
+  color: #e6fdff;
 }
