@@ -56,6 +56,11 @@ const SignUpForm = () => {
       <div className="home-page">
         <img className="splash-image" src="https://i.imgur.com/Qfj09lS.png" />
         <div className="signup-page">
+        <div className="header" >
+          <Link to="https://github.com/calvinlieu">
+          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" className="github-link"/>
+          </Link>
+        </div>
           <img
             className="twitter-icon"
             src="https://cdn-icons-png.flaticon.com/512/124/124021.png"
@@ -133,12 +138,8 @@ const SignUpForm = () => {
                 signInClick();
               }}
             >
-              {" "}
-              Sign In{" "}
-            </button>
-            {/* <Link to="/login" exact={true}>
               Sign In
-            </Link> */}
+            </button>
           </div>
         </div>
       </div>
