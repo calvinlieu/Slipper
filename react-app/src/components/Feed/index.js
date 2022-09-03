@@ -19,11 +19,11 @@ const Feed = () => {
 
   return (
     <>
-      <div>
+      <div className="tweets-feed">
         {tweets &&
           tweets.map((tweet) => (
-            <div key={tweet.id}>
-              <div>
+            <div key={tweet.id} className="each-tweet">
+              <div className="username-tweet">
                 <NavLink to={`/users/${tweet.user.id}`}></NavLink>
                 {tweet.user.username}
               </div>
