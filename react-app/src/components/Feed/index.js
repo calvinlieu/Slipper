@@ -28,9 +28,9 @@ const Feed = () => {
                 {tweet.user.username}
               </div>
               <NavLink to={`/tweets/${tweet.id}`}>
-                <div>{tweet.description}</div>
+                <div className="description">{tweet.description}</div>
                 <div className="imgDiv">
-                  <img alt="" src={tweet.image_url}></img>
+                  <img className="image" alt="" src={tweet.image_url}></img>
                 </div>
               </NavLink>
             </div>
