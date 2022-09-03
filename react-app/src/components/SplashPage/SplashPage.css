@@ -127,3 +127,9 @@
 .link-text {
   color: #e6fdff;
 }
+
+.signup-form input ::placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

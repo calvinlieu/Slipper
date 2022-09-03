@@ -1,8 +1,19 @@
+
 .imgDiv {
-    width: 150px;
-    height: 150px;
+    width: 10px;
+    height: 200;
     background-size: cover;
     border-radius: 33px;
     object-fit: contain;
     margin: 1rem;
+}
+
+.image {
+    width: 350px;
+    height: 180px;
+    object-fit: cover;
+}
+
+.description {
+    color: rgba(255, 255, 255, 0.951)
 }
