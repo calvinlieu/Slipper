@@ -21,6 +21,7 @@
     color: rgba(255, 255, 255, 0.951);
     margin-left: 55px;
     margin-top: 10px;
+    text-decoration: none;
 }
 
 .tweets-feed {
@@ -28,6 +29,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    /* max-width: 1700px; */
+
 }
 
 .each-tweet {
@@ -39,4 +42,17 @@
 .username-tweet {
     margin-left: 55px;
     margin-top: 30px;
+}
+
+.feed-navbar {
+    justify-content: space-between;
+}
+
+.tweet-container {
+    text-decoration: none;
+}
+
+.tweet-username {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.951);
 }
