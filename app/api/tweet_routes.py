@@ -110,7 +110,6 @@ def add_comment(tweet_id):
 
     comment_form['csrf_token'].data = request.cookies['csrf_token']
     if comment_form.validate_on_submit() and current_user.id == user_id:
-
         comment = Comment(
             content=content,
             user_id=user_id,
@@ -125,4 +124,4 @@ def add_comment(tweet_id):
         db.session.commit()
         return comment.to_dict()
     else:
-        return '403: unauthorized user'
+        return "unauthorized user", 403

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getTweets } from "../../store/tweet";
+import NavBar from "../NavBar/NavBar";
 import "./Feed.css";
 
 const Feed = () => {
@@ -19,15 +20,17 @@ const Feed = () => {
 
   return (
     <>
+      <div className="feed-navbar">
+        <NavBar />
+      </div>
       <div className="tweets-feed">
         {tweets &&
           tweets.map((tweet) => (
-            <div key={tweet.id} className="each-tweet">
+            <div key={tweet.id} id={tweet.id} className="each-tweet">
               <div className="username-tweet">
-                <NavLink to={`/users/${tweet.user.id}`}></NavLink>
-                {tweet.user.username}
+                <div className="tweet-username" to={`/users/${tweet.user.id}`}>{tweet.user.username} {`@${tweet.user.username}`}</div>
               </div>
-              <NavLink to={`/tweets/${tweet.id}`}>
+              <NavLink to={`/tweets/${tweet.id}`} className="tweet-container">
                 <div className="description">{tweet.description}</div>
                 <div className="imgDiv">
                   <img className="image" alt="" src={tweet.image_url}></img>
