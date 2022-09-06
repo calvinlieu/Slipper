@@ -1,9 +1,10 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import DeleteTweet from '../DeleteTweet/DeleteTweet';
 import './TweetOptions.css'
 import { useHistory } from 'react-router-dom';
 import { updateTweetThunk } from '../../store/tweet';
+import EditTweetModal from '../EditTweet/index'
+import DeleteTweetModal from '../DeleteTweet';
 
 function TweetOptions({ tweet, onClick }) {
     const dispatch = useDispatch();
@@ -39,8 +40,8 @@ function TweetOptions({ tweet, onClick }) {
         <div className='post-options-container'>
         {user && user.id == tweet.user.id ? (
             <>
-            <DeleteTweet tweet={tweet}/>
-            {/* <EditPostModal tweet={tweet} /> */}
+            <DeleteTweetModal tweet={tweet}/>
+            <EditTweetModal tweet={tweet} />
             <div className='give-me-a-border' onClick={onClick} >Cancel</div>
             </>
         ) : (

@@ -11,6 +11,7 @@ import { authenticate } from "./store/session";
 import Feed from "./components/Feed";
 import CreateTweetForm from "./components/CreateTweet/CreateTweetForm";
 import "./index.css";
+import TweetDetail from "./components/TweetDetails";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,6 +50,10 @@ function App() {
         <Route path="/tweets/create" exact={true}>
           <NavBar />
           <CreateTweetForm />
+        </Route>
+        <Route path="/tweets/:tweetId" exact={true}>
+          <NavBar />
+          <TweetDetail />
         </Route>
         <ProtectedRoute path="/" exact={true}>
           <Feed />

@@ -1,5 +1,8 @@
 .post-options-button {
     margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 16px;
 }
 
 .post-options-container {
@@ -29,5 +32,5 @@
 
 .top-option {
     border-radius: 10px 10px 0 0 ;
-    background-color: #e8e4e4;
+    border-bottom: 1px solid #DBDBDB
 }
