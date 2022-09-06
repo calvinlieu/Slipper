@@ -9,6 +9,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
 import Feed from "./components/Feed";
+import CreateTweetForm from "./components/CreateTweet/CreateTweetForm";
 import "./index.css";
 
 function App() {
@@ -45,8 +46,11 @@ function App() {
           <NavBar />
           <User />
         </ProtectedRoute>
+        <Route path="/tweets/create" exact={true}>
+          <NavBar />
+          <CreateTweetForm />
+        </Route>
         <ProtectedRoute path="/" exact={true}>
-          {/* <NavBar /> */}
           <Feed />
         </ProtectedRoute>
       </Switch>
