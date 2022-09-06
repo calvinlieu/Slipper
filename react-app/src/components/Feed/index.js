@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getTweets } from "../../store/tweet";
 import NavBar from "../NavBar/NavBar";
+import TweetOptionsModal from "../TweetOptions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Feed.css";
 
 const Feed = () => {
@@ -18,17 +20,27 @@ const Feed = () => {
     dispatch(getTweets());
   }, [dispatch]);
 
+ 
+
+
   return (
-    <>
+    <div className="feed-main-container">
       <div className="feed-navbar">
         <NavBar />
       </div>
       <div className="tweets-feed">
+      <div className="createTweetFeed">
+        What's happening?
+      </div>
         {tweets &&
           tweets.map((tweet) => (
             <div key={tweet.id} id={tweet.id} className="each-tweet">
               <div className="username-tweet">
-                <div className="tweet-username" to={`/users/${tweet.user.id}`}>{tweet.user.username} {`@${tweet.user.username}`}</div>
+                <NavLink className="tweet-username" to={`/users/${tweet.user.id}`}>{tweet.user.username} {`@${tweet.user.username}`}</NavLink>
+              <div className="options-modal">
+                <TweetOptionsModal tweet={tweet}/>
+                <i class="fa-solid fa-ellipsis-stroke"></i>
+              </div>
               </div>
               <NavLink to={`/tweets/${tweet.id}`} className="tweet-container">
                 <div className="description">{tweet.description}</div>
@@ -39,8 +51,8 @@ const Feed = () => {
             </div>
           ))}
       </div>
-    </>
+    </div>
   );
 };
 
-export default Feed;
+export default Feed

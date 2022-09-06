@@ -1,38 +1,68 @@
 .logo-img {
-    height: 45px;
-    width: 45px;
-    border-radius: 50px;
+  height: 45px;
+  width: 45px;
+  border-radius: 50px;
 }
 
 .logout-button {
-    background-color: rgb(29, 155, 240);
-    color: rgba(255, 255, 255, 0.951); 
-    width: 227px;
-    height: 47px;
-    padding: 0px 29px;
-    border-radius: 50px;
-    font: 14px;
+  background-color: rgb(29, 155, 240);
+  color: rgba(255, 255, 255, 0.951);
+  width: 227px;
+  height: 47px;
+  padding: 0px 29px;
+  border-radius: 50px;
+  font: 14px;
 }
 
 .tweet-modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(29, 155, 240);
-    width: 227px;
-    height: 47px;
-    border-radius: 50px;
-    text-decoration: none;
-    font: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(29, 155, 240);
+  width: 227px;
+  height: 45px;
+  border-radius: 50px;
+  text-decoration: none;
+  font: 14px;
+  border: 2px solid black;
 }
 
 .tweet-text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.951);
-    width: 227px;
-    height: 47px;
-    font: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.951);
+  width: 227px;
+  height: 47px;
+  font: 14px;
+}
+
+.home-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.951);
+  width: 227px;
+  height: 47px;
+  font: 14px;
+  
+}
+
+.home-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(29, 155, 240);
+  width: 227px;
+  height: 45px;
+  border-radius: 50px;
+  text-decoration: none;
+  font: 14px;
+  border: 2px solid black;
+}
+
+.img-div {
+    margin-bottom: 100px;
 }

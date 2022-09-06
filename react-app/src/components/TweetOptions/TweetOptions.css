@@ -1,0 +1,33 @@
+.post-options-button {
+    margin-top: 10px;
+}
+
+.post-options-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+}
+
+.post-options-container div {
+    height: 48px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+.give-me-a-border {
+    border-top: 1px solid #DBDBDB
+}
+
+.give-me-a-border:active {
+    background-color: #e8e4e4;
+}
+
+.top-option {
+    border-radius: 10px 10px 0 0 ;
+    background-color: #e8e4e4;
+}
