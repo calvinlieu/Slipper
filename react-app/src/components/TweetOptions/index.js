@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Modal } from '../../context/Modal'
 import TweetOptions from './TweetOptions'
+import "./TweetOptions.css"
 
 function TweetOptionsModal({ tweet }) {
     const [showModal, setShowModal] = useState(false)

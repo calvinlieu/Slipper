@@ -1,0 +1,80 @@
+.edit-post-button:active {
+    background-color: #e8e4e4;
+}
+
+.edit-post-form-container {
+    width: 700px;
+    background-color: #fefefe;
+    border-radius: 10px;
+    margin-left: 2px;
+}
+
+.edit-post-top-bar {
+    display: flex;
+    height: 42px;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-bottom: 1px solid rgb(234, 234, 234)
+}
+
+.edit-post-top-bar > div {
+    font-size: 16px;
+}
+.edit-post-form-container{
+    max-width: 380px;
+}
+
+.edit-post-submit-button {
+    border: none;
+    background-color: transparent;
+    color: #0095F6;
+    font-size: 16px;
+}
+.edit-post-submit-button[disabled]{
+    color: #0094f68f;
+}
+.main-edit-container{
+    display: flex;
+}
+.left-edit-container{
+    width: 400px;
+}
+.right-edit-container{
+
+    width: 400px;
+}
+.right-edit-container > *{
+    padding-left: 15px;
+}
+.edit-img{
+    width: 400px;
+}
+.user-info-modal{
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+
+}
+.post-caption-edit > textarea{
+    border: none;
+    resize: none;
+    outline: none;
+    font-size: 20px;
+    margin-top: 30px;
+    font-weight: lighter;
+    height: 249px;
+    scrollbar-width: 3px;
+}
+.user-post-username{
+    margin-left: 10px;
+    font-weight: 700;
+}
+.image-url-edit{
+    display: flex;
+    align-items: center;
+}
+.image-url-edit > p{
+    margin-left: 10px;
+}
