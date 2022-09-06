@@ -12,7 +12,7 @@ function TweetOptions({ tweet, onClick }) {
     const user = useSelector(state => state.session.user);
 
     const goToPost = () => {
-        history.push(`/posts/${tweet.id}`)
+        history.push(`/tweets/${tweet.id}`)
         onClick()
     }
 
