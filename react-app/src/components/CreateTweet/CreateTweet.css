@@ -24,13 +24,13 @@
   font-size: 16px;
 }
 
-.user-post-image{
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    object-fit: cover;
-    margin-right: 10px;
-  }
+.user-post-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  object-fit: cover;
+  margin-right: 10px;
+}
 
 .create-post,
 .cancel-button {
@@ -55,7 +55,6 @@
   color: gray;
   display: flex;
   align-items: center;
-
 }
 
 .create-post-form {
@@ -137,5 +136,5 @@
 }
 
 .caption-div {
-    overflow-wrap: break-word;
+  word-break: break-all;
 }

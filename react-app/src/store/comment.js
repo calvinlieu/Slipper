@@ -55,13 +55,15 @@ export const createComment = (data) => async (dispatch) => {
 };
 
 export const editComment = (commentId, comment) => async(dispatch) => {
-    const response = await fetch(`/api/tweets/${commentId}`, {
+    const response = await fetch(`/api/comments/${commentId}`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(comment)
     })
+    console.log(response, "response thunk")
     if (response.ok) {
         const editedComment = await response.json();
+        console.log(editComment,"edited comment")
         dispatch(update(editedComment));
         return editedComment
     }
@@ -86,7 +88,7 @@ const commentReducer = (state = initialState, action) => {
     switch(action.type) {
         case LOAD_COMMENTS: {
             const newState = {};
-            action.comments.forEach((comment) => {newState[comment.id] = comment});
+            action.comments.comments.forEach((comment) => {newState[comment.id] = comment});
             return newState;
         }
         case ADD_COMMENT: {
