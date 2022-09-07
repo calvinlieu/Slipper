@@ -68,3 +68,9 @@
     width: 520px;
     border: 1px solid grey;
 }
+
+.comments-div{
+    display: flex;
+    flex-direction: row;
+    letter-spacing: 10px;
+}
