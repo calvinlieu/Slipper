@@ -6,14 +6,12 @@ import { editComment, getComments } from "../../store/comment";
 function EditCommentForm({ commentId, onClick }) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { id } = useParams();
   const user = useSelector((state) => state?.session.user);
   const comment = useSelector((state) => state?.comments);
   const tweet = useSelector((state) => state?.tweets)
   const [content, setContent] = useState(comment?.content || " ");
   const [errors, setErrors] = useState([]);
 
-  console.log(comment, "comment")
   useEffect(() => {
     const newErrors = [];
     if (content?.length > 280) {
@@ -48,8 +46,8 @@ function EditCommentForm({ commentId, onClick }) {
   return (
     <form className="edit-comment-form" onSubmit={handleSubmit}>
       <ul>
-        {errors.map((error) => (
-          <li key={error.id}>{error}</li>
+        {errors.map((error, idx) => (
+          <li key={idx}>{error}</li>
         ))}
       </ul>
       <input

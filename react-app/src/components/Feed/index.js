@@ -14,14 +14,13 @@ const Feed = () => {
   let { tweetId } = useParams();
   const tweet = useSelector((state) => state?.tweets[tweetId]);
   const user = useSelector((state) => state.session.user);
-  const comments = useSelector(state => Object.values(state.comments))
+  const comments = useSelector((state) => Object.values(state.comments));
   const dispatch = useDispatch();
   const sortedTweets = tweets.sort().reverse();
-  
 
   useEffect(() => {
     dispatch(getTweets(tweets.id));
-    dispatch(getComments(comments.id))
+    dispatch(getComments(comments.id));
   }, [dispatch, tweets.id, comments.id]);
 
   return (
@@ -31,7 +30,8 @@ const Feed = () => {
       </div>
       <div className="tweets-feed">
         <div className="createTweetFeed">What's happening?</div>
-        {sortedTweets && comments && 
+        {sortedTweets &&
+          comments &&
           sortedTweets.map((tweet) => (
             <div key={tweet.id} id={tweet.id} className="each-tweet">
               <div className="username-tweet">
@@ -45,12 +45,14 @@ const Feed = () => {
               </div>
               <NavLink to={`/tweets/${tweet.id}`} className="tweet-container">
                 <div className="description">{tweet?.description}</div>
-                <div className="imgDiv">
-                  <img className="image" alt="" src={tweet?.image_url}></img>
-                </div>
+                {tweet.image_url && (
+                  <div className="imgDiv">
+                    <img className="image" alt="" src={tweet?.image_url}></img>
+                  </div>
+                )}
               </NavLink>
               <div className="comments-div">
-                <CreateCommentModal tweet={tweet}/> {tweet?.comments?.length}
+                <CreateCommentModal tweet={tweet} /> {tweet?.comments?.length}
               </div>
             </div>
           ))}

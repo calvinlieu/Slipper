@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createTweet } from "../../store/tweet";
-import "./CreateTweet.css"
+import "./CreateTweet.css";
 
 function CreateTweetForm({ onClick }) {
   const dispatch = useDispatch();
@@ -66,7 +66,9 @@ function CreateTweetForm({ onClick }) {
                 alt="Profile"
               />
             )}
-            <div>{user.username}</div>
+            <div>
+              {user.username} {`@${user.username}`}
+            </div>
           </div>
           <form className="create-post-form" onSubmit={handleSubmit}>
             {errors && (
@@ -76,38 +78,36 @@ function CreateTweetForm({ onClick }) {
                 })}
               </ul>
             )}
-            {/* <div>
-              <label>Image:</label>
-              <input
-                // type="file"
-                type="text"
-                placeholder="Image URL here..."
-                value={imageUrl}
-                // onChange={() => previewFile()}
-                onChange={(e) => setImageUrl(e.target.value)}
-                required
-              />
-            </div> */}
             <div className="caption-div">
               <input
-                type="textarea"
+                style={{backgroundColor: "#15202B"}}
+                type= "textarea"
                 placeholder="What's happening?"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 required
               />
             </div>
+            <div className="img-form-container">
+              <input
+                style={{ height: "25px", backgroundColor: "#15202B" }}
+                type="text"
+                placeholder="Image URL here..."
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+              />
+            </div>
           </form>
           <div className="buttonContainer">
-          <button
-            onClick={handleSubmit}
-            className="create-post-btn"
-            type="submit"
-            disabled={errors.length > 0}
-          >
-            Tweet
-          </button>
-        </div>
+            <button
+              onClick={handleSubmit}
+              className="create-post-btn"
+              type="submit"
+              disabled={errors.length > 0}
+            >
+              Tweet
+            </button>
+          </div>
         </div>
       </div>
     </div>
