@@ -10,17 +10,12 @@ comment_routes = Blueprint("comments", __name__, url_prefix="/comments")
 #edit a comment
 @comment_routes.route("/<comment_id>", methods=["PUT"])
 def edit_comment(comment_id):
-    comment_form = CommentForm()
-    comment_form['csrf_token'].data = request.cookies['csrf_token']
     comment = Comment.query.get(comment_id)
+    data = request.json
+    comment.content = data["content"]
+    db.session.commit()
+    return comment.to_dict()
 
-    if current_user.id == comment.user_id:
-        comment.content = comment_form.data['content']
-
-        db.session.commit()
-        return comment.to_dict()
-    else:
-        return "404: Unauthorized User"
 
 #delete a comment
 @comment_routes.route("/<comment_id>", methods=["DELETE"])

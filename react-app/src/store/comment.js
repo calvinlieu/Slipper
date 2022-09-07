@@ -14,10 +14,10 @@ const load = (comments, tweetId) => ({
   tweetId,
 });
 
-const update = (comment) => ({
+const update = (comment, commentId) => ({
   type: UPDATE_COMMENT,
   comment,
-
+  commentId
 });
 
 const remove = (commentId, tweetId) => ({
@@ -54,16 +54,15 @@ export const createComment = (data) => async (dispatch) => {
   return newComment;
 };
 
-export const editComment = (commentId, comment) => async(dispatch) => {
+export const editComment = (payload, commentId) => async(dispatch) => {
     const response = await fetch(`/api/comments/${commentId}`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(comment)
-    })
-    console.log(response, "response thunk")
+        body: JSON.stringify(payload),
+      })
+      console.log(commentId, "test response thunk")
     if (response.ok) {
         const editedComment = await response.json();
-        console.log(editComment,"edited comment")
         dispatch(update(editedComment));
         return editedComment
     }
