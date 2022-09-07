@@ -15,8 +15,6 @@ const TweetDetail = () => {
   const tweetComments = Object.values(comments).filter(
     (comment) => comment?.tweet === tweet?.id
   );
-  
-  console.log(comments, "comments")
 
   useEffect(() => {
     dispatch(getTweets(tweetId));
@@ -38,14 +36,16 @@ const TweetDetail = () => {
         <img className="image" alt="" src={tweet?.image_url}></img>
       </div>
       {tweetComments &&
-        tweetComments.map((comments) => (
+        tweetComments.map((comments) => {
+          console.log(comments, "wadsadsadsadsadsadsa")
+          return (
           <div key={comments?.id}>
             {comments?.user?.username} {`@${comments?.user?.username}`}
             {comments?.content}
             {comments?.user.id === user.id && (
               <>
                 <div>
-                  <EditCommentModal />
+                  <EditCommentModal commentId={comments.id}/>
                 </div>
                 <img
                   onClick={() => handleDelete(comments.id)}
@@ -56,7 +56,7 @@ const TweetDetail = () => {
               </>
             )}
           </div>
-        ))}
+        )})}
     </div>
   );
 };

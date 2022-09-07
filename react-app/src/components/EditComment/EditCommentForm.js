@@ -13,7 +13,7 @@ function EditCommentForm({ commentId, onClick }) {
   const [content, setContent] = useState(comment?.content || " ");
   const [errors, setErrors] = useState([]);
 
-
+  console.log(comment, "comment")
   useEffect(() => {
     const newErrors = [];
     if (content?.length > 280) {
@@ -35,11 +35,12 @@ function EditCommentForm({ commentId, onClick }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
+      user_id: user.id,
       content: content,
+      tweet_id: tweet.id
     };
-
+    console.log(commentId, "in submit")
     dispatch(editComment(payload, commentId));
-    // dispatch(getComments(commentId));
 
     onClick()
   };
