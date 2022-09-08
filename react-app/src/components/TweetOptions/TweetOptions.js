@@ -32,7 +32,6 @@ function TweetOptions({ tweet, onClick }) {
 
     const copyLink = (tweet) => {
         let copiedLink = `https://slipper-capstone.herokuapp.com/tweets/${tweet.id}`
-
         navigator.clipboard.writeText(copiedLink)
     }
 

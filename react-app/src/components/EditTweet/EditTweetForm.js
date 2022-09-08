@@ -25,7 +25,7 @@ function EditTweetForm({ tweet, onClick }) {
 
         let updatedTweet = await dispatch(updateTweetThunk(payload, tweet.id))
         if (updatedTweet) {
-            history.push(`/`)
+            history.push(`/tweets/${tweet.id}`)
         }
 
         onClick()

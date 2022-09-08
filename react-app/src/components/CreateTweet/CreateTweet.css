@@ -137,13 +137,24 @@
   position: absolute;
   top: 0;
   font-size: 14px;
+  margin: 10px;
 }
 
-.caption-div input {
+.caption-div textarea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0px 0px 130px 0;
   color: rgba(255, 255, 255, 0.951);
   font-family: Arial;
   resize: none;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  white-space: pre-wrap;
+  word-break: break-all;
+  width: 574px;
+  border-radius: 5px;
 }
 
 .img-form-container {

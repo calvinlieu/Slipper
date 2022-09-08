@@ -12,7 +12,6 @@ import "./Feed.css";
 const Feed = () => {
   const tweets = useSelector((state) => Object.values(state.tweets));
   let { tweetId } = useParams();
-  const tweet = useSelector((state) => state?.tweets[tweetId]);
   const user = useSelector((state) => state.session.user);
   const comments = useSelector((state) => Object.values(state.comments));
   const dispatch = useDispatch();
@@ -34,17 +33,26 @@ const Feed = () => {
           comments &&
           sortedTweets.map((tweet) => (
             <div key={tweet.id} id={tweet.id} className="each-tweet">
-              <div className="username-tweet">
-                <NavLink
-                  className="tweet-username"
-                  to={`/users/${tweet.user.id}`}
-                >
-                  {tweet.user.username} {`@${tweet.user.username}`}
-                </NavLink>
-                <TweetOptionsModal tweet={tweet} />
+              <div className="tweet-username">
+                <div className="username-div">
+                  <div>
+                    <img
+                      className="profile-image"
+                      src="https://i.imgur.com/vF8FTS2.png"
+                      alt="Profile"
+                    />
+                  </div>
+                  <div className="">{tweet.user.username}</div>
+                  <div className="at-username">
+                    {`@${tweet.user.username}`}
+                  </div>
+                </div>
+                <div>
+                  <TweetOptionsModal tweet={tweet} />
+                </div>
               </div>
               <NavLink to={`/tweets/${tweet.id}`} className="tweet-container">
-                <div className="description">{tweet?.description}</div>
+                <pre className="description">{tweet?.description}</pre>
                 {tweet.image_url && (
                   <div className="imgDiv">
                     <img className="image" alt="" src={tweet?.image_url}></img>

@@ -5,6 +5,7 @@ import { getTweets, updateTweetThunk } from "../../store/tweet";
 import { deleteComment, getComments } from "../../store/comment";
 import "./TweetDetails.css";
 import EditCommentModal from "../EditComment";
+import TweetOptionsModal from "../TweetOptions";
 
 const TweetDetail = () => {
   const dispatch = useDispatch();
@@ -28,35 +29,50 @@ const TweetDetail = () => {
 
   return (
     <div>
-      <div>
-        {tweet?.user?.username} {`@${tweet?.user?.username}`}
+      <div className="tweet-username">
+        <div className="username-div">
+          <div>
+            <img
+              className="profile-image"
+              src="https://i.imgur.com/vF8FTS2.png"
+              alt="Profile"
+            />
+          </div>
+          <div className="">{tweet.user.username}</div>
+          <div className="at-username">{`@${tweet.user.username}`}</div>
+        </div>
+        <div>
+          <TweetOptionsModal tweet={tweet} />
+        </div>
       </div>
-      <div>{tweet?.description}</div>
-      <div className="imgDiv">
-        <img className="image" alt="" src={tweet?.image_url}></img>
-      </div>
+      <pre>{tweet?.description}</pre>
+      {tweet.image_url && (
+        <div className="imgDiv">
+          <img className="image" alt="" src={tweet?.image_url}></img>
+        </div>
+      )}
       {tweetComments &&
         tweetComments.map((comments) => {
-          console.log(comments, "wadsadsadsadsadsadsa")
           return (
-          <div key={comments?.id}>
-            {comments?.user?.username} {`@${comments?.user?.username}`}
-            {comments?.content}
-            {comments?.user.id === user.id && (
-              <>
-                <div>
-                  <EditCommentModal commentId={comments.id}/>
-                </div>
-                <img
-                  onClick={() => handleDelete(comments.id)}
-                  className="comment-del-btn"
-                  src="https://www.pngitem.com/pimgs/m/164-1649314_recycle-bin-delete-garbage-full-trash-can-icon.png"
-                  alt=""
-                />
-              </>
-            )}
-          </div>
-        )})}
+            <div key={comments?.id}>
+              {comments?.user?.username} {`@${comments?.user?.username}`}
+              {comments?.content}
+              {comments?.user.id === user?.id && (
+                <>
+                  <div>
+                    <EditCommentModal commentId={comments.id} />
+                  </div>
+                  <img
+                    onClick={() => handleDelete(comments.id)}
+                    className="comment-del-btn"
+                    src="https://www.pngitem.com/pimgs/m/164-1649314_recycle-bin-delete-garbage-full-trash-can-icon.png"
+                    alt=""
+                  />
+                </>
+              )}
+            </div>
+          );
+        })}
     </div>
   );
 };

@@ -1,75 +1,90 @@
 .image {
-    width: 450px;
-    height: 333px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-top: 15px;
-    margin-left: 55px;
+  width: 450px;
+  height: 333px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-top: 15px;
+  margin-left: 55px;
 }
 
 .description {
-    color: rgba(255, 255, 255, 0.951);
-    margin-left: 55px;
-    margin-top: 10px;
-    text-decoration: none;
+  color: rgba(255, 255, 255, 0.951);
+  margin-left: 55px;
+  margin-top: 10px;
+  text-decoration: none;
+  font-family: Arial, "Segoe UI";
+
 }
 
 .tweets-feed {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    justify-self: center;
-    align-self: center;
-    /* max-width: 1700px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .each-tweet {
-    width: 520px;
-    border: 1px solid grey;
+  width: 520px;
+  border: 1px solid grey;
 }
 
-.username-tweet {
-    margin-left: 55px;
-    margin-top: 30px;
-}
 
 .feed-navbar {
-    display: flex;
-    position: fixed;
-    height: 100%;
-    /* top: 100px;
-    left: 100px; */
+  display: flex;
+  position: fixed;
+  height: 100%;
+
 }
 
 .tweet-container {
-    text-decoration: none;
+  text-decoration: none;
+}
+
+.tweet-container:active {
+  background-color: grey;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .tweet-username {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.951);
-}
-
-.feed-main-container {
-    /* display: flex;
-    width: 100%; */
-    /* justify-content: space-venly; */
-    /* justify-content: center;
-    align-items: center; */
-    position: relative;
-    /* display: flex 100px 1 1; */
-
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.951);
+  margin-top: 30px;
 }
 
 .createTweetFeed {
-    height: 99px;
-    width: 520px;
-    border: 1px solid grey;
+  height: 99px;
+  width: 520px;
+  border: 1px solid grey;
 }
 
-.comments-div{
-    display: flex;
-    flex-direction: row;
-    letter-spacing: 10px;
+.comments-div {
+  display: flex;
+  flex-direction: row;
+  letter-spacing: 10px;
+  margin-left: 55px;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
+
+.username-div {
+  display: flex;
+  flex-direction: row;
+}
+
+.at-username {
+  margin-left: 5px;
+  color: grey;
+}
+
+.profile-image {
+  width: 43px;
+  height: 43px;
+  border-radius: 100%;
+  object-fit: cover;
+  margin-right: 5px;
+  margin-left: 8px;
+}
+

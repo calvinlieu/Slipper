@@ -79,9 +79,9 @@ function CreateTweetForm({ onClick }) {
               </ul>
             )}
             <div className="caption-div">
-              <input
+              <textarea
                 style={{backgroundColor: "#15202B"}}
-                type= "textarea"
+                type= "text"
                 placeholder="What's happening?"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
