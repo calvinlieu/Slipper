@@ -28,7 +28,9 @@ const Feed = () => {
         <NavBar />
       </div>
       <div className="tweets-feed">
-        <div className="createTweetFeed">What's happening?</div>
+        <div className="createTweetFeed">
+          <div className="create-text-div">What's Happening?</div>
+        </div>
         {sortedTweets &&
           comments &&
           sortedTweets.map((tweet) => (

@@ -51,7 +51,6 @@ function App() {
           <CreateTweetForm />
         </Route>
         <Route path="/tweets/:tweetId" exact={true}>
-          <NavBar />
           <TweetDetail />
         </Route>
         <ProtectedRoute path="/" exact={true}>
