@@ -39,7 +39,7 @@ const NavBar = () => {
             Users
           </NavLink>
         </div> */}
-        <div>
+        <div className='logout-div'>
           < LogoutButton />
         </div>
       </ul>

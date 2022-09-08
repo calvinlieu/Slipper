@@ -4,6 +4,10 @@
   border-radius: 50px;
 }
 
+.home-btn {
+  margin-bottom: 10px;
+}
+
 .logout-button {
   background-color: rgb(29, 155, 240);
   color: rgba(255, 255, 255, 0.951);
@@ -65,4 +69,8 @@
 
 .img-div {
     margin-bottom: 100px;
+}
+
+.logout-div {
+  margin-top: 10px;
 }
