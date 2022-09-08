@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { login } from '../../store/session';
-import "../SplashPage/SplashPage.css"
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { NavLink, Redirect } from "react-router-dom";
+import { login } from "../../store/session";
+import "./LoginForm.css";
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const user = useSelector(state => state.session.user);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   const onLogin = async (e) => {
@@ -28,39 +28,53 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to="/" />;
   }
 
   return (
-    <form className="login-form"onSubmit={onLogin}>
-      <p>Sign in to Slipper</p>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-        />
-        <button className="login-form-btn"type='submit'>Login</button>
-      </div>
-    </form>
+    <div className="login-container">
+      <form className="login-form" onSubmit={onLogin}>
+        <div className="sign-in-icon">
+          <img
+            className="twitter-icon"
+            src="https://cdn-icons-png.flaticon.com/512/124/124021.png"
+          />
+        </div>
+        <p>Sign in to Slipper</p>
+        <div>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
+        <div>
+          <label htmlFor="email">Email</label>
+          <input
+            name="email"
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={updateEmail}
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={updatePassword}
+          />
+        </div>
+        <button className="login-form-btn" type="submit">
+          Login
+        </button>
+        {/* <div>
+          Don't have an account?
+          <NavLink to="/sign-up">Sign Up</NavLink>
+        </div> */}
+      </form>
+    </div>
   );
 };
 
