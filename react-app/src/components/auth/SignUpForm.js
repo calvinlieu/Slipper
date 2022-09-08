@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, NavLink, Link } from "react-router-dom";
 import { signUp, demoLogin } from "../../store/session";
 import "../SplashPage/SplashPage.css";
+import LoginFormModal from ".";
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -126,25 +127,30 @@ const SignUpForm = () => {
           </button>
           <div className="signin-section">Already have an account?</div>
           <div>
-            <button
-              className="signin-btn"
-              type="button"
-              onClick={() => {
-                signInClick();
-              }}
-            >
-              Sign In
+            <button className="signin-btn">
+              <LoginFormModal />
             </button>
           </div>
           <div className="header">
             <div>Created By: Calvin Lieu</div>
             <div className="HomePage-LinkedIn">
-              <img alt="" src= "react-app/src/components/SplashPage/LinkedIn_Logo.svg.png"className="HomePage-logos" />
-              <a className="link-text" href="https://www.linkedin.com/in/calvin-lieu-3049b4228/">LinkedIn</a>
+              <img
+                alt=""
+                src="react-app/src/components/SplashPage/LinkedIn_Logo.svg.png"
+                className="HomePage-logos"
+              />
+              <a
+                className="link-text"
+                href="https://www.linkedin.com/in/calvin-lieu-3049b4228/"
+              >
+                LinkedIn
+              </a>
             </div>
             <div className="HomePage-GitHub">
               <img alt="" className="HomePage-logos" />
-              <a className="link-text" href="https://github.com/calvinlieu">GitHub</a>
+              <a className="link-text" href="https://github.com/calvinlieu">
+                GitHub
+              </a>
             </div>
           </div>
         </div>
