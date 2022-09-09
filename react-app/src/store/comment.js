@@ -60,7 +60,7 @@ export const editComment = (payload, commentId) => async(dispatch) => {
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(payload),
       })
-      console.log(commentId, "test response thunk")
+      
     if (response.ok) {
         const editedComment = await response.json();
         dispatch(update(editedComment));
