@@ -39,7 +39,7 @@ function EditTweetForm({ tweet, onClick }) {
     }
 
     if (description.length > 280) {
-        setErrors(["Maximum characters of 280 has been reached."])
+        setErrors(["Comment length of 280 characters exceeded, current character count: 281"])
         return;
     }
 

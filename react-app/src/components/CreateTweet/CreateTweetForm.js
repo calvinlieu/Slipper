@@ -29,9 +29,9 @@ function CreateTweetForm({ onClick }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (errors.length > 0) {
-      return;
-    }
+    // if (errors.length > 0) {
+    //   return;
+    // }
 
     if (!description) {
       setErrors(["Tweet is required!"]);
@@ -43,7 +43,7 @@ function CreateTweetForm({ onClick }) {
     }
 
     if (description.length > 280) {
-      setErrors(["Tweet length of 280 characters exceeded"]);
+      setErrors(["Tweet length of 280 characters exceeded, current character count: 281"]);
       return;
     }
     const payload = {

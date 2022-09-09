@@ -10,8 +10,12 @@ function EditCommentForm({ commentId, onClick }) {
   const user = useSelector((state) => state?.session.user);
   const comment = useSelector((state) => state?.comments);
   const tweet = useSelector((state) => state?.tweets);
-  const [content, setContent] = useState(Object.values(comment)[0].content);
+  const [content, setContent] = useState(comment[commentId].content);
   const [errors, setErrors] = useState([]);
+
+  console.log(commentId, "commentID")
+  console.log(comment, "comment")
+  console.log(content, "content")
 
   // useEffect(() => {
   //   const newErrors = [];
