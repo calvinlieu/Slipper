@@ -34,7 +34,6 @@ function App() {
       <Switch>
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
-          <LoginFormModal />
         </Route>
         {/* <Route exact path="/login">
           <LoginFormModal />

@@ -106,7 +106,6 @@
 .header {
   text-decoration: none;
   margin-left: 30px;
-  margin-top: 75px;
   display: flex;
   flex-direction: row;
 }
@@ -133,4 +132,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.error-container {
+  color: red;
+  margin-bottom: 5px;
 }
