@@ -57,6 +57,28 @@ const SignUpForm = () => {
       <div className="home-page">
         <img className="splash-image" src="https://i.imgur.com/Qfj09lS.png" />
         <div className="signup-page">
+          <div className="header">
+            <div>Created By: Calvin Lieu</div>
+            <div className="HomePage-LinkedIn">
+              <img
+                alt=""
+                src="react-app/src/components/SplashPage/LinkedIn_Logo.svg.png"
+                className="HomePage-logos"
+              />
+              <a
+                className="link-text"
+                href="https://www.linkedin.com/in/calvin-lieu-3049b4228/"
+              >
+                LinkedIn
+              </a>
+            </div>
+            <div className="HomePage-GitHub">
+              <img alt="" className="HomePage-logos" />
+              <a className="link-text" href="https://github.com/calvinlieu">
+                GitHub
+              </a>
+            </div>
+          </div>
           <img
             className="twitter-icon"
             src="https://cdn-icons-png.flaticon.com/512/124/124021.png"
@@ -66,12 +88,11 @@ const SignUpForm = () => {
           <form className="signup-form" onSubmit={onSignUp}>
             <div className="error-container">
               {errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
+                <div key={ind}>* {error}</div>
               ))}
             </div>
             <div>
               <div>
-                {/* <label>User Name:</label> */}
                 <input
                   type="text"
                   name="username"
@@ -81,7 +102,6 @@ const SignUpForm = () => {
                 ></input>
               </div>
               <div>
-                {/* <label>Email:</label> */}
                 <input
                   type="text"
                   name="email"
@@ -91,7 +111,6 @@ const SignUpForm = () => {
                 ></input>
               </div>
               <div>
-                {/* <label>Password:</label> */}
                 <input
                   type="password"
                   name="password"
@@ -101,7 +120,6 @@ const SignUpForm = () => {
                 ></input>
               </div>
               <div>
-                {/* <label>Repeat Password:</label> */}
                 <input
                   type="password"
                   name="repeat_password"
@@ -130,28 +148,6 @@ const SignUpForm = () => {
             <button className="signin-btn">
               <LoginFormModal />
             </button>
-          </div>
-          <div className="header">
-            <div>Created By: Calvin Lieu</div>
-            <div className="HomePage-LinkedIn">
-              <img
-                alt=""
-                src="react-app/src/components/SplashPage/LinkedIn_Logo.svg.png"
-                className="HomePage-logos"
-              />
-              <a
-                className="link-text"
-                href="https://www.linkedin.com/in/calvin-lieu-3049b4228/"
-              >
-                LinkedIn
-              </a>
-            </div>
-            <div className="HomePage-GitHub">
-              <img alt="" className="HomePage-logos" />
-              <a className="link-text" href="https://github.com/calvinlieu">
-                GitHub
-              </a>
-            </div>
           </div>
         </div>
       </div>
