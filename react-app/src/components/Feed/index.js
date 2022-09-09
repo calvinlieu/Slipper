@@ -67,7 +67,7 @@ const Feed = () => {
     }
 
     if (description.length > 280) {
-      setErrors(["Tweet length of 280 characters exceeded"]);
+      setErrors(["Tweet length of 280 characters exceeded, current character count: 281"]);
       return;
     }
 
