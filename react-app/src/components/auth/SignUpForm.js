@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect, NavLink, Link } from "react-router-dom";
 import { signUp, demoLogin } from "../../store/session";
 import "../SplashPage/SplashPage.css";
+import TwitterLogo from "./twitterlogo.svg";
 import LoginFormModal from ".";
 
 const SignUpForm = () => {
@@ -21,6 +22,7 @@ const SignUpForm = () => {
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
+        console.log(data, "data")
         setErrors(data);
       }
     } else {
@@ -81,7 +83,7 @@ const SignUpForm = () => {
           </div>
           <img
             className="twitter-icon"
-            src="https://cdn-icons-png.flaticon.com/512/124/124021.png"
+            src={TwitterLogo}
           />
           <p className="happening">Happening now</p>
           <p className="join">Join Slipper today.</p>

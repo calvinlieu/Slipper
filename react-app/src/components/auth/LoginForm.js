@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
 import { login } from "../../store/session";
+import TwitterLogo from "./twitterlogo.svg";
 import "./LoginForm.css";
 
 const LoginForm = () => {
@@ -35,20 +36,17 @@ const LoginForm = () => {
     <div className="login-container">
       <form className="login-form" onSubmit={onLogin}>
         <div className="sign-in-icon">
-          <img
-            className="twitter-icon"
-            src="https://cdn-icons-png.flaticon.com/512/124/124021.png"
-          />
+          <img className="twitter-icon-sign-in" src={TwitterLogo} />
         </div>
-        <p>Sign in to Slipper</p>
-        <div>
+        <p className="sign-in-header">Sign in to Slipper</p>
+        <div className="login-error">
           {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
+            <div key={ind}>{error.split(":")[1]}</div>
           ))}
         </div>
         <div>
-          <label htmlFor="email">Email</label>
           <input
+            className="email-sign-in-input"
             name="email"
             type="text"
             placeholder="Email"
@@ -57,8 +55,8 @@ const LoginForm = () => {
           />
         </div>
         <div>
-          <label htmlFor="password">Password</label>
           <input
+            className="password-sign-in-input"
             name="password"
             type="password"
             placeholder="Password"

@@ -3,6 +3,7 @@ from app.models import db, Tweet, Comment, tweet
 from app.forms import TweetForm, CommentForm
 from flask_login import current_user
 
+
 tweet_routes = Blueprint("tweets", __name__, url_prefix="/tweets")
 
 #get all tweets
@@ -38,7 +39,7 @@ def user_tweet():
         db.session.commit()
         return tweet.to_dict()
     else:
-        return 'Unauthorized User', 403
+        return "Tweet is required", 403
 
 
 # edit a tweet
