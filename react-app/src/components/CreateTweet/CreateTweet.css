@@ -160,3 +160,7 @@
 .img-form-container {
   margin-top: 10px;
 }
+
+.create-post-form-errors {
+  color: red;
+}

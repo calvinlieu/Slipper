@@ -7,5 +7,5 @@ from wtforms.validators import DataRequired
 class TweetForm(FlaskForm):
   user_id = IntegerField("User_id", validators=[DataRequired()])
   image_url = StringField("Image_url")
-  description = StringField("Description", validators=[DataRequired()])
+  description = StringField("Description", validators=[DataRequired("Tweet content is required!")])
   display_comments = BooleanField("Display comments")

@@ -13,6 +13,8 @@
   margin-top: 10px;
   text-decoration: none;
   font-family: Arial, "Segoe UI";
+  word-break: break-all;
+  overflow:hidden;
 }
 
 .tweets-feed {
@@ -53,13 +55,8 @@
 }
 
 .createTweetFeed {
-  height: 99px;
   width: 520px;
   border: 1px solid grey;
-}
-
-.create-text-div {
-  display: flex;
 }
 
 .comments-div {
@@ -92,4 +89,53 @@
 .feed-main-container {
   display: flex;
   justify-content: space-evenly;
+}
+
+.create-tweet-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.username-top-div {
+  display: flex;
+  margin-top: 10px;
+}
+
+.top-button-submit {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.whats-happening-div textarea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 0px 60px 0;
+  color: rgba(255, 255, 255, 0.951);
+  font-family: Arial;
+  resize: none;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  white-space: pre-wrap;
+  word-break: break-all;
+  width: 517px;
+  margin-bottom: 5px;
+}
+
+.img-form-tweet-container input{
+  color: rgba(255, 255, 255, 0.951);
+  font-family: Arial;
+  resize: none;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  white-space: pre-wrap;
+  word-break: break-all;
+  width: 511px;
 }
