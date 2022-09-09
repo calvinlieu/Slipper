@@ -13,8 +13,11 @@
   margin-top: 10px;
   text-decoration: none;
   font-family: Arial, "Segoe UI";
-  word-break: break-all;
-  overflow:hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  width: 450px;
+  white-space: pre-wrap;
 }
 
 .tweets-feed {
@@ -138,4 +141,11 @@
   white-space: pre-wrap;
   word-break: break-all;
   width: 511px;
+}
+
+.create-tweet-form-errors {
+  color: red;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 15px;
 }

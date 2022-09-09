@@ -25,18 +25,45 @@ const Feed = () => {
     dispatch(getComments(comments.id));
   }, [dispatch, tweets.id, comments.id]);
 
+  console.log(description, "description");
+
+  useEffect(() => {
+    const errors = [];
+    const imgRegex = new RegExp(
+      /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/
+    );
+    if (imageUrl && !imgRegex.test(imageUrl)) {
+      errors.push(
+        "Invalid Image Url! URL must contain a .png, .jpg, .jpeg, .gif, .png or .svg!"
+      );
+    }
+    setErrors(errors);
+  }, [imageUrl]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (errors.length > 0) {
+      return;
+    }
+
+    if (!description) {
+      setErrors(["Tweet is required!"]);
+      return;
+    }
+    if (description && description.trim().length === 0) {
+      setErrors(["Tweet is required!"]);
+      return;
+    }
+
     const payload = {
       user_id: user.id,
       description: description,
       image_url: imageUrl,
     };
 
-    await dispatch(createTweet(payload));
-
+    dispatch(createTweet(payload));
     setDescription("");
-    setImageUrl("")
+    setImageUrl("");
   };
 
   return (
@@ -59,13 +86,6 @@ const Feed = () => {
           </div>
           <div>
             <form className="create-tweet-form" onSubmit={handleSubmit}>
-              {errors && (
-                <ul className="create-tweet-form-errors">
-                  {errors.map((error) => {
-                    return <li>{`${error}`}</li>;
-                  })}
-                </ul>
-              )}
               <div className="whats-happening-div">
                 <textarea
                   style={{ backgroundColor: "#15202B" }}
@@ -86,12 +106,19 @@ const Feed = () => {
                 />
               </div>
             </form>
+            {errors && (
+              <ul className="create-tweet-form-errors">
+                {errors.map((error) => {
+                  return <div>{`${error}`}</div>;
+                })}
+              </ul>
+            )}
             <div className="top-button-submit">
               <button
                 onClick={handleSubmit}
                 className="create-post-btn"
                 type="submit"
-                disabled={errors.length > 0}
+                // disabled={errors.length > 0}
               >
                 Tweet
               </button>
