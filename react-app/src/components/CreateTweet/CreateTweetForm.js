@@ -11,6 +11,7 @@ function CreateTweetForm({ onClick }) {
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [errors, setErrors] = useState([]);
+  const [hasSubmitted, setHasSubmitted] = useState(false)
 
   useEffect(() => {
     const newErrors = [];
@@ -20,11 +21,7 @@ function CreateTweetForm({ onClick }) {
     if (!description) {
       newErrors.push("Tweet is required!");
     }
-    if (newErrors.length) {
-      setErrors(newErrors);
-    } else {
-      setErrors([]);
-    }
+    setErrors(newErrors)
   }, [description]);
 
   const handleSubmit = async (e) => {
@@ -34,7 +31,7 @@ function CreateTweetForm({ onClick }) {
       description: description,
       image_url: imageUrl,
     };
-
+    
     onClick();
     let updatedPost = await dispatch(createTweet(payload));
     if (updatedPost) {
