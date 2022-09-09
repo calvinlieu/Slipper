@@ -92,8 +92,14 @@
 
 .user-comments {
   color: rgba(255, 255, 255, 0.951);
-  margin-left: 78px;
+  margin-left: 55px;
+  margin-top: 10px;
   text-decoration: none;
   font-family: Arial, "Segoe UI";
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  width: 450px;
+  white-space: pre-wrap;
   margin-bottom: 10px;
 }
