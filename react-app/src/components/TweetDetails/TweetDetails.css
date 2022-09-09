@@ -1,16 +1,7 @@
-/* body {
-  font-family: Arial;
-} */
 .tweet-main-container {
   display: flex;
   justify-content: space-evenly;
-}
-
-.tweets-details {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  
 }
 
 .tweet-details {
@@ -26,8 +17,8 @@
 }
 
 .comment-del-btn {
-  height: 14px;
-  width: 14px;
+  height: 24px;
+  width: 24px;
   margin-left: 10px;
 }
 
@@ -36,6 +27,11 @@
   text-decoration: none;
   color: rgba(255, 255, 255, 0.951);
   margin-top: 30px;
+  
+}
+
+.individual-name-comments {
+  margin-left: 10px;
 }
 
 .individual-username {
@@ -60,31 +56,43 @@
   margin-top: 10px;
   text-decoration: none;
   font-family: Arial, "Segoe UI";
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  width: 450px;
+  white-space: pre-wrap;
 }
 
-.comments-section {
-  border: 1px solid grey;
-}
+/* .comments-section {
+  border: 1px solid;
+  
+} */
 
 .each-comment {
-  border: 1px solid grey;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  width: 100%;
 }
 
 .comment-user-div {
   display: flex;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.951);
-  margin-top: 30px;
+  margin: 10px 10px;
+  position: relative;
 }
 
 .comment-functions {
   display: flex;
   margin-left: 10px;
+  justify-content: flex-end;
+  width: 100%;
+  margin-right: 8px;
 }
 
 .user-comments {
   color: rgba(255, 255, 255, 0.951);
-  margin-left: 55px;
+  margin-left: 78px;
   text-decoration: none;
   font-family: Arial, "Segoe UI";
   margin-bottom: 10px;

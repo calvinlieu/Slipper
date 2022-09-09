@@ -9,7 +9,7 @@ function EditCommentModal({ tweet, commentId }) {
 
   return (
     <>
-      <div className="edit-post-button" onClick={() => setShowModal(true)}><i className="fa-regular fa-pen-to-square"></i></div>
+      <div className="edit-post-button-comment" onClick={() => setShowModal(true)}><i className="fa-regular fa-pen-to-square"></i></div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditCommentForm tweet={tweet} commentId={commentId} onClick={() => setShowModal(false)} />

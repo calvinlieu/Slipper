@@ -27,24 +27,35 @@ const Feed = () => {
 
   console.log(description, "description");
 
-  useEffect(() => {
-    const errors = [];
-    const imgRegex = new RegExp(
-      /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/
-    );
-    if (imageUrl && !imgRegex.test(imageUrl)) {
-      errors.push(
-        "Invalid Image Url! URL must contain a .png, .jpg, .jpeg, .gif, .png or .svg!"
-      );
-    }
-    setErrors(errors);
-  }, [imageUrl]);
+  // useEffect(() => {
+  //   const errors = [];
+  //   const imgRegex = new RegExp(
+  //     /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/
+  //   );
+  //   if (imageUrl && !imgRegex.test(imageUrl)) {
+  //     errors.push(
+  //       "Invalid Image Url! URL must contain a .png, .jpg, .jpeg, .gif, .png or .svg!"
+  //     );
+  //   }
+  //   setErrors(errors);
+  // }, [imageUrl]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (errors.length > 0) {
+    const imgRegex = new RegExp(
+      /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/
+    );
+
+    if (imageUrl && !imgRegex.test(imageUrl)) {
+      setErrors([
+        "Invalid Image Url! URL must contain a .png, .jpg, .jpeg, .gif, .png or .svg!",
+      ]);
       return;
     }
+
+    // if (errors.length > 0) {
+    //   return;
+    // }
 
     if (!description) {
       setErrors(["Tweet is required!"]);
@@ -52,6 +63,11 @@ const Feed = () => {
     }
     if (description && description.trim().length === 0) {
       setErrors(["Tweet is required!"]);
+      return;
+    }
+
+    if (description.length > 280) {
+      setErrors(["Tweet length of 280 characters exceeded"]);
       return;
     }
 
@@ -64,6 +80,7 @@ const Feed = () => {
     dispatch(createTweet(payload));
     setDescription("");
     setImageUrl("");
+    setErrors([]);
   };
 
   return (
@@ -90,6 +107,7 @@ const Feed = () => {
                 <textarea
                   style={{ backgroundColor: "#15202B" }}
                   type="text"
+                  maxLength="281"
                   placeholder="What's happening?"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}

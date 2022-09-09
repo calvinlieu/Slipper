@@ -72,7 +72,7 @@ const TweetDetail = () => {
                         alt="Profile"
                       />
                     </div>
-                    <div>{comments?.user?.username}</div>
+                    <div className="individual-name-comments">{comments?.user?.username}</div>
                     <div className="individual-username">{`@${comments?.user?.username}`}</div>
 
                     <div className="comment-functions">
@@ -84,7 +84,7 @@ const TweetDetail = () => {
                           <img
                             onClick={() => handleDelete(comments.id)}
                             className="comment-del-btn"
-                            src="https://www.pngitem.com/pimgs/m/164-1649314_recycle-bin-delete-garbage-full-trash-can-icon.png"
+                            src="https://cdn-icons-png.flaticon.com/512/3300/3300464.png"
                             alt=""
                           />
                         </>

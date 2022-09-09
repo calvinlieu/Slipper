@@ -1,10 +1,10 @@
 .edit-post-button:active {
-    background-color: #e8e4e4;
+    background-color: #15202B;
 }
 
 .edit-post-form-container {
     width: 700px;
-    background-color: #fefefe;
+    background-color: #15202B;
     border-radius: 10px;
     margin-left: 2px;
 }
@@ -62,10 +62,12 @@
     resize: none;
     outline: none;
     font-size: 20px;
-    margin-top: 30px;
+    margin: 30px 0;
     font-weight: lighter;
-    height: 249px;
-    scrollbar-width: 3px;
+    height: 180px;
+    width: 470px;
+    background-color: #15202B;
+    color: rgba(255, 255, 255, 0.951);
 }
 .user-post-username{
     margin-left: 10px;
@@ -77,4 +79,13 @@
 }
 .image-url-edit > p{
     margin-left: 10px;
+}
+
+.edit-post-form-errors {
+    color: red;
+    margin-top: 20px;
+}
+
+.edit-post-container {
+    width: 500px;
 }

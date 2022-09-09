@@ -11,27 +11,47 @@ function CreateTweetForm({ onClick }) {
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [errors, setErrors] = useState([]);
-  const [hasSubmitted, setHasSubmitted] = useState(false)
+  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   useEffect(() => {
-    const newErrors = [];
-    if (description?.length > 280) {
-      newErrors.push("Tweet length of 280 characters exceeded");
+    const errors = [];
+    const imgRegex = new RegExp(
+      /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/
+    );
+    if (imageUrl && !imgRegex.test(imageUrl)) {
+      errors.push(
+        "Invalid Image Url! URL must contain a .png, .jpg, .jpeg, .gif, .png or .svg!"
+      );
     }
-    if (!description) {
-      newErrors.push("Tweet is required!");
-    }
-    setErrors(newErrors)
-  }, [description]);
+    setErrors(errors);
+  }, [imageUrl]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (errors.length > 0) {
+      return;
+    }
+
+    if (!description) {
+      setErrors(["Tweet is required!"]);
+      return;
+    }
+    if (description && description.trim().length === 0) {
+      setErrors(["Tweet is required!"]);
+      return;
+    }
+
+    if (description.length > 280) {
+      setErrors(["Tweet length of 280 characters exceeded"]);
+      return;
+    }
     const payload = {
       user_id: user.id,
       description: description,
       image_url: imageUrl,
     };
-    
+
     onClick();
     let updatedPost = await dispatch(createTweet(payload));
     if (updatedPost) {
@@ -71,14 +91,15 @@ function CreateTweetForm({ onClick }) {
             {errors && (
               <ul className="create-post-form-errors">
                 {errors.map((error) => {
-                  return <li>{`${error}`}</li>;
+                  return <div>{`${error}`}</div>;
                 })}
               </ul>
             )}
             <div className="caption-div">
               <textarea
-                style={{backgroundColor: "#15202B"}}
-                type= "text"
+                style={{ backgroundColor: "#15202B" }}
+                type="text"
+                maxLength="281"
                 placeholder="What's happening?"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -100,7 +121,7 @@ function CreateTweetForm({ onClick }) {
               onClick={handleSubmit}
               className="create-post-btn"
               type="submit"
-              disabled={errors.length > 0}
+              // disabled={errors.length > 0}
             >
               Tweet
             </button>
