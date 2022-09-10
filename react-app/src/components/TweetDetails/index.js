@@ -53,7 +53,16 @@ const TweetDetail = () => {
         <pre className="tweet-description">{tweet?.description}</pre>
         {tweet?.image_url && (
           <div className="imgDiv">
-            <img className="image" alt="" src={tweet?.image_url}></img>
+            <img
+              className="image"
+              alt=""
+              src={tweet?.image_url}
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null; // prevents looping
+                currentTarget.src =
+                  "https://wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg";
+              }}
+            ></img>
           </div>
         )}
         <div className="comments-div">
@@ -72,7 +81,9 @@ const TweetDetail = () => {
                         alt="Profile"
                       />
                     </div>
-                    <div className="individual-name-comments">{comments?.user?.username}</div>
+                    <div className="individual-name-comments">
+                      {comments?.user?.username}
+                    </div>
                     <div className="individual-username">{`@${comments?.user?.username}`}</div>
 
                     <div className="comment-functions">
