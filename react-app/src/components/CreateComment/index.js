@@ -16,6 +16,7 @@ function CreateCommentModal({ tweet }) {
       )}
     </>
   );
-}
+} 
+
 
 export default CreateCommentModal;
