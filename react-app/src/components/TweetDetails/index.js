@@ -110,6 +110,7 @@ const TweetDetail = () => {
       </div>
     </div>
   );
-};
+}; 
+
 
 export default TweetDetail;
