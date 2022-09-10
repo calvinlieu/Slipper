@@ -67,7 +67,9 @@ const Feed = () => {
     }
 
     if (description.length > 280) {
-      setErrors(["Tweet length of 280 characters exceeded, current character count: 281"]);
+      setErrors([
+        "Tweet length of 280 characters exceeded, current character count: 281",
+      ]);
       return;
     }
 
@@ -167,7 +169,15 @@ const Feed = () => {
                 <pre className="description">{tweet?.description}</pre>
                 {tweet.image_url && (
                   <div className="imgDiv">
-                    <img className="image" alt="" src={tweet?.image_url}></img>
+                    <img
+                      className="image"
+                      alt=""
+                      src={tweet?.image_url}
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null; // prevents looping
+                        currentTarget.src = "https://wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg";
+                      }}
+                    ></img>
                   </div>
                 )}
               </NavLink>
