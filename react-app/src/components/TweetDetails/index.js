@@ -26,6 +26,7 @@ const TweetDetail = () => {
 
   const handleDelete = async (commentId) => {
     await dispatch(deleteComment(commentId, tweetId));
+    await dispatch(getTweets(tweetId))
   };
 
   return (
