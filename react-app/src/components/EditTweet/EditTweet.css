@@ -18,6 +18,9 @@
     padding-right: 15px;
     border-bottom: 1px solid rgb(234, 234, 234)
 }
+.cancel-btn {
+    cursor: pointer;
+}
 
 .edit-post-top-bar > div {
     font-size: 16px;
@@ -31,6 +34,7 @@
     background-color: transparent;
     color: #0095F6;
     font-size: 16px;
+    cursor: pointer;
 }
 .edit-post-submit-button[disabled]{
     color: #0094f68f;

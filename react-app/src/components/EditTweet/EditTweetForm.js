@@ -59,7 +59,7 @@ function EditTweetForm({ tweet, onClick }) {
   return (
     <div className="edit-post-container">
       <div className="edit-post-top-bar">
-        <div onClick={() => onClick()}>Cancel</div>
+        <div className="cancel-btn"onClick={() => onClick()}>Cancel</div>
         <div style={{ "font-weight": "bold" }}>Edit Tweet</div>
         <button
           onClick={handleSubmit}
