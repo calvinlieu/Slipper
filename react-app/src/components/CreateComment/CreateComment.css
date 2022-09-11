@@ -23,6 +23,10 @@
     margin-bottom: 20px;
 }
 
+.edit-post-button {
+    cursor: pointer;
+}
+
 .comment-textarea textarea {
     border: none;
     resize: none;

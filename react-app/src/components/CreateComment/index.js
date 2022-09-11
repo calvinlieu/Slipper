@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "../../context/Modal";
 import CommentForm from "./CreateCommentForm";
+import "./CreateComment.css"
 
 
 function CreateCommentModal({ tweet }) {
