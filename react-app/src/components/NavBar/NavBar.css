@@ -16,6 +16,7 @@
   padding: 0px 29px;
   border-radius: 50px;
   font: 14px;
+  cursor: pointer;
 }
 
 .tweet-modal {
@@ -29,6 +30,7 @@
   text-decoration: none;
   font: 14px;
   border: 2px solid black;
+  cursor: pointer;
 }
 
 .tweet-text {
