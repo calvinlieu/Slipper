@@ -32,29 +32,29 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/sign-up" exact={true}>
+        <Route exact path="/sign-up">
           <SignUpForm />
         </Route>
-        {/* <Route exact path="/login">
-          <LoginFormModal />
-        </Route> */}
-        <ProtectedRoute path="/users" exact={true}>
+        <ProtectedRoute exact path="/users">
           <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true}>
+        <ProtectedRoute exact path="/users/:userId">
           <NavBar />
           <User />
         </ProtectedRoute>
-        <Route path="/tweets/create" exact={true}>
+        <Route exact path="/tweets/create">
           <NavBar />
           <CreateTweetForm />
         </Route>
-        <Route path="/tweets/:tweetId" exact={true}>
+        <Route exact path="/tweets/:tweetId">
           <TweetDetail />
         </Route>
-        <ProtectedRoute path="/" exact={true}>
+        <ProtectedRoute exact path="/">
           <Feed />
         </ProtectedRoute>
+        <ProtectedRoute path="*">
+            <div className="pageNotFound">404 Page Not Found</div>
+          </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );
