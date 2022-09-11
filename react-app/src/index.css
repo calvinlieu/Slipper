@@ -6,3 +6,9 @@ body {
     color: rgba(255, 255, 255, 0.951);
 }
 
+.pageNotFound {
+    font-size: 50px;
+    margin-top: 100px;
+    text-align: center;
+    display: block;
+  }
