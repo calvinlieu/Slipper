@@ -25,7 +25,7 @@ const SignUpForm = () => {
         setErrors(data);
       }
     } else {
-      setErrors(["Password: Passwords must match!"]);
+      setErrors(["Password: Passwords must match"]);
     }
   };
 
@@ -117,7 +117,6 @@ const SignUpForm = () => {
                   name="password"
                   onChange={updatePassword}
                   value={password}
-                  required={true}
                   placeholder="Password"
                 ></input>
               </div>
@@ -127,7 +126,6 @@ const SignUpForm = () => {
                   name="repeat_password"
                   onChange={updateRepeatPassword}
                   value={repeatPassword}
-                  required={true}
                   placeholder="Repeat Password"
                 ></input>
               </div>
