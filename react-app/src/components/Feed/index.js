@@ -25,7 +25,6 @@ const Feed = () => {
     dispatch(getComments(comments.id));
   }, [dispatch, tweets.id, comments.id]);
 
-  console.log(description, "description");
 
   // useEffect(() => {
   //   const errors = [];
