@@ -13,9 +13,6 @@ function EditCommentForm({ commentId, onClick }) {
   const [content, setContent] = useState(comment[commentId].content);
   const [errors, setErrors] = useState([]);
 
-  console.log(commentId, "commentID")
-  console.log(comment, "comment")
-  console.log(content, "content")
 
   // useEffect(() => {
   //   const newErrors = [];
@@ -35,7 +32,6 @@ function EditCommentForm({ commentId, onClick }) {
   //   }
   // }, [content]);
 
-  console.log(content, "content")
 
   const handleSubmit = async (e) => {
     e.preventDefault();
