@@ -13,25 +13,31 @@ function CreateTweetForm({ onClick }) {
   const [errors, setErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
-  useEffect(() => {
-    const errors = [];
-    const imgRegex = new RegExp(
-      /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/
-    );
-    if (imageUrl && !imgRegex.test(imageUrl)) {
-      errors.push(
-        "Invalid Image Url! URL must contain a .png, .jpg, .jpeg, .gif, .png or .svg!"
-      );
-    }
-    setErrors(errors);
-  }, [imageUrl]);
+  // useEffect(() => {
+  //   const errors = [];
+  //   const imgRegex = new RegExp(
+  //     /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/
+  //   );
+  //   if (imageUrl && !imgRegex.test(imageUrl)) {
+  //     errors.push(
+  //       "Invalid Image Url! URL must contain a .png, .jpg, .jpeg, .gif, .png or .svg!"
+  //     );
+  //   }
+  //   setErrors(errors);
+  // }, [imageUrl]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // if (errors.length > 0) {
-    //   return;
-    // }
+    const imgRegex = new RegExp(
+      /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/
+    );
+    if (imageUrl && !imgRegex.test(imageUrl)) {
+      setErrors([
+        "Invalid Image Url! URL must contain a .png, .jpg, .jpeg, .gif, .png or .svg!",
+      ]);
+      return;
+    }
 
     if (!description) {
       setErrors(["Tweet is required!"]);
@@ -43,7 +49,9 @@ function CreateTweetForm({ onClick }) {
     }
 
     if (description.length > 280) {
-      setErrors(["Tweet length of 280 characters exceeded, current character count: 281"]);
+      setErrors([
+        "Tweet length of 280 characters exceeded, current character count: 281",
+      ]);
       return;
     }
     const payload = {
