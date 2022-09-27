@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createTweet } from "../../store/tweet";
@@ -11,7 +11,6 @@ function CreateTweetForm({ onClick }) {
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [errors, setErrors] = useState([]);
-  const [hasSubmitted, setHasSubmitted] = useState(false);
 
   // useEffect(() => {
   //   const errors = [];

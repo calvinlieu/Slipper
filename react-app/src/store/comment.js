@@ -32,7 +32,7 @@ export const getComments = (tweetId) => async (dispatch) => {
   if (response.ok) {
     const comments = await response.json();
     dispatch(load(comments, tweetId));
-  }
+  } 
 };
 
 export const createComment = (data) => async (dispatch) => {

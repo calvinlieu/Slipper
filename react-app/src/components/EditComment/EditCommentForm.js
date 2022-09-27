@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
-import { editComment, getComments } from "../../store/comment";
+import { editComment } from "../../store/comment";
 import "./EditComment.css"
 
 function EditCommentForm({ commentId, onClick }) {
   const dispatch = useDispatch();
-  const history = useHistory();
   const user = useSelector((state) => state?.session.user);
   const comment = useSelector((state) => state?.comments);
   const tweet = useSelector((state) => state?.tweets);

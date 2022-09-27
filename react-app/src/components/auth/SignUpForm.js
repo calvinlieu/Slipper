@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, NavLink, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { signUp, demoLogin } from "../../store/session";
 import "../SplashPage/SplashPage.css";
 import TwitterLogo from "./twitterlogo.svg";
@@ -15,7 +14,6 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -45,9 +43,9 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
-  const signInClick = (e) => {
-    history.push("/login");
-  };
+  // const signInClick = (e) => {
+  //   history.push("/login");
+  // };
 
   if (user) {
     return <Redirect to="/" />;
@@ -56,7 +54,7 @@ const SignUpForm = () => {
   return (
     <>
       <div className="home-page">
-        <img className="splash-image" src="https://i.imgur.com/Qfj09lS.png" />
+        <img className="splash-image" alt="" src="https://i.imgur.com/Qfj09lS.png" />
         <div className="signup-page">
           <div className="header">
             <div>Created By: Calvin Lieu</div>
@@ -83,6 +81,7 @@ const SignUpForm = () => {
           <img
             className="twitter-icon"
             src={TwitterLogo}
+            alt= ""
           />
           <p className="happening">Happening now</p>
           <p className="join">Join Slipper today.</p>

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createComment, getComments } from "../../store/comment";
 import { getTweets } from "../../store/tweet";
 import "./CreateComment.css";
-import { useHistory } from "react-router-dom";
+
 
 const CommentForm = ({ tweet, onClick }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  
   const user = useSelector((state) => state.session.user);
   const [content, setContent] = useState("");
   const [errors, setErrors] = useState([]);
@@ -32,9 +32,6 @@ const CommentForm = ({ tweet, onClick }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // if (errors.length > 0) {
-    //   return;
-    // }
 
     if (!content) {
       setErrors(["Comment is required!"]);

@@ -48,7 +48,7 @@ def update_tweet(tweet_id):
     tweet = Tweet.query.get(tweet_id)
 
     if not tweet:
-        return "Error 404: The Tweet you are looking for can not be found!"
+        return "The Tweet you are looking for can not be found!", 404
     
     updated_tweet = TweetForm()
 
@@ -70,7 +70,7 @@ def single_tweet(tweet_id):
     tweet = Tweet.query.get(tweet_id)
 
     if not tweet:
-        return "Error 404: The tweet you are looking for does not exist!"
+        return "The Tweet you are looking for can not be found!", 404
     
     return tweet.to_dict()
 
@@ -79,7 +79,7 @@ def single_tweet(tweet_id):
 def delete_tweet(tweet_id):
     tweet = Tweet.query.get(tweet_id)
     if not tweet:
-        return "Error 404: The tweet you are looking for does not exist!"
+        return "The Tweet you are looking for can not be found!", 404
     
     db.session.delete(tweet)
     db.session.commit()
@@ -92,8 +92,8 @@ def delete_tweet(tweet_id):
 def tweet_comments(tweet_id):
     comments = Comment.query.filter(Comment.tweet_id == tweet_id ).all()
 
-    if not comments:
-        return "Error 404: The comments you're looking for couldn't be found"
+    # if not comments:
+    #     return "The Tweet you are looking for can not be found!", 404
 
     response = [comment.to_dict() for comment in comments]
     res = { "comments": response }
