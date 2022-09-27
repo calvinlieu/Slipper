@@ -1,13 +1,11 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import './TweetOptions.css'
 import { useHistory } from 'react-router-dom';
-import { updateTweetThunk } from '../../store/tweet';
 import EditTweetModal from '../EditTweet/index'
 import DeleteTweetModal from '../DeleteTweet';
 
 function TweetOptions({ tweet, onClick }) {
-    const dispatch = useDispatch();
     const history = useHistory();
     const user = useSelector(state => state.session.user);
 
@@ -37,7 +35,7 @@ function TweetOptions({ tweet, onClick }) {
 
     return (
         <div className='post-options-container'>
-        {user && user.id == tweet.user.id ? (
+        {user && user.id === tweet.user.id ? (
             <>
             <DeleteTweetModal tweet={tweet}/>
             <EditTweetModal tweet={tweet} />

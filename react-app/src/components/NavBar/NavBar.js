@@ -10,7 +10,7 @@ const NavBar = () => {
       <ul>
         <div className='img-div'>
           <NavLink to='/' exact={true} activeClassName='active'>
-            <img className="logo-img" src="https://cdn-icons-png.flaticon.com/512/124/124021.png"/>
+            <img className="logo-img" alt='' src="https://cdn-icons-png.flaticon.com/512/124/124021.png"/>
           </NavLink>
         </div>
         <div className='home-btn'>

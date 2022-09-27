@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { getTweets, createTweet } from "../../store/tweet";
 import { getComments } from "../../store/comment";
 import CreateCommentModal from "../CreateComment";
@@ -11,7 +11,6 @@ import "./Feed.css";
 
 const Feed = () => {
   const tweets = useSelector((state) => Object.values(state.tweets));
-  let { tweetId } = useParams();
   const user = useSelector((state) => state.session.user);
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");

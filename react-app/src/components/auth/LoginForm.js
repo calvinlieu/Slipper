@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
 import TwitterLogo from "./twitterlogo.svg";
 import "./LoginForm.css";
@@ -36,7 +36,7 @@ const LoginForm = () => {
     <div className="login-container">
       <form className="login-form" onSubmit={onLogin}>
         <div className="sign-in-icon">
-          <img className="twitter-icon-sign-in" src={TwitterLogo} />
+          <img className="twitter-icon-sign-in" alt="" src={TwitterLogo} />
         </div>
         <p className="sign-in-header">Sign in to Slipper</p>
         <div className="login-error">

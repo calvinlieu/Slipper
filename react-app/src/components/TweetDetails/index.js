@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getTweets, updateTweetThunk } from "../../store/tweet";
+import { getTweets } from "../../store/tweet";
 import { deleteComment, getComments } from "../../store/comment";
 import "./TweetDetails.css";
 import EditCommentModal from "../EditComment";
@@ -14,13 +14,14 @@ const TweetDetail = () => {
   const history = useHistory();
   let { tweetId } = useParams();
   const tweets = useSelector((state) => state.tweets)
-  const tweet = useSelector((state) => state?.tweets[tweetId]);
+  const tweet = useSelector((state) => state.tweets[tweetId]);
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector((state) => state?.session?.user);
   const comments = useSelector((state) => Object.values(state?.comments));
   const tweetComments = Object.values(comments).filter(
     (comment) => comment?.tweet === tweet?.id
   );
+  const tweetString = JSON.stringify(tweets)
 
   useEffect(() => {
     dispatch(getTweets(tweetId));
@@ -29,12 +30,11 @@ const TweetDetail = () => {
     if (isLoaded && tweets && tweets[tweetId] === undefined) {
       history.push("/");
     }
-
-  }, [dispatch, tweetId, tweets]);
+  }, [dispatch, tweetString]);
 
   const handleDelete = async (commentId) => {
     await dispatch(deleteComment(commentId, tweetId));
-    await dispatch(getTweets(tweetId))
+    await dispatch(getComments(tweetId))
   };
 
   return (

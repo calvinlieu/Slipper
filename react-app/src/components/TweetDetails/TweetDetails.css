@@ -20,6 +20,7 @@
   height: 24px;
   width: 24px;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .username-div-info {
