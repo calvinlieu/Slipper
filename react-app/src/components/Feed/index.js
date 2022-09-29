@@ -13,7 +13,6 @@ import {
   addLikeThunk,
   getTweetLikesThunk,
 } from "../../store/like";
-import UseAnimations from "react-useanimations";
 
 const Feed = () => {
   const tweets = useSelector((state) => Object.values(state.tweets));
