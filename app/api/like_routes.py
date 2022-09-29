@@ -6,9 +6,9 @@ from flask_login import current_user
 likes_routes = Blueprint("likes", __name__, url_prefix="/likes")
 
 
-@likes_routes.route('/post/<post_id>')
-def get_likes(post_id):
-    likes = Like.query.filter(Like.post_id == post_id).all()
+@likes_routes.route('/tweets/<tweet_id>')
+def get_likes(tweet_id):
+    likes = Like.query.filter(Like.tweet_id == tweet_id).all()
 
     return { 'likes': [like.to_dict() for like in likes] }
 
@@ -20,7 +20,7 @@ def like():
     form = LikeForm()
 
     user_id = form.data['user_id']
-    tweet_id = form.data['post_id']
+    tweet_id = form.data['tweet_id']
     comment_id = form.data['comment_id']
 
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -31,7 +31,7 @@ def like():
 
             for like in all_likes:
                 if like.user_id == user_id:
-                    return "Error: You have already liked this post"
+                    return "Error: You have already liked this post", 400
 
             tweet = Tweet.query.get(tweet_id)
             tweet.likes += 1
@@ -50,7 +50,7 @@ def like():
 
             for like in all_likes:
                 if like.user_id == user_id:
-                    return "Error: You have already liked this comment"
+                    return "Error: You have already liked this comment", 400
 
             comment = Comment.query.get(comment_id)
             comment.likes += 1
@@ -64,7 +64,7 @@ def like():
             db.session.commit()
             return new_like.to_dict()
         else:
-            return '400: invalid form entry'
+            return 'invalid form entry', 400
 
 
 @likes_routes.route('/<like_id>', methods=['DELETE'])

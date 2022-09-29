@@ -8,6 +8,12 @@ import CreateCommentModal from "../CreateComment";
 import NavBar from "../NavBar/NavBar";
 import TweetOptionsModal from "../TweetOptions";
 import "./Feed.css";
+import {
+  removeLikeThunk,
+  addLikeThunk,
+  getTweetLikesThunk,
+} from "../../store/like";
+import UseAnimations from "react-useanimations";
 
 const Feed = () => {
   const tweets = useSelector((state) => Object.values(state.tweets));
@@ -24,19 +30,28 @@ const Feed = () => {
     dispatch(getComments(comments.id));
   }, [dispatch, tweets.id, comments.id]);
 
+  const addLikePost = async (tweet, isLiked) => {
+    const payload = {
+      user_id: user.id,
+      tweet_id: tweet.id,
+    };
 
-  // useEffect(() => {
-  //   const errors = [];
-  //   const imgRegex = new RegExp(
-  //     /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/
-  //   );
-  //   if (imageUrl && !imgRegex.test(imageUrl)) {
-  //     errors.push(
-  //       "Invalid Image Url! URL must contain a .png, .jpg, .jpeg, .gif, .png or .svg!"
-  //     );
-  //   }
-  //   setErrors(errors);
-  // }, [imageUrl]);
+    await dispatch(addLikeThunk(payload));
+    dispatch(getTweets());
+    isLiked = true;
+  };
+
+  const removeLikePost = async (isLiked, likes) => {
+    let likeId;
+    Object.values(likes).forEach((like) => {
+      if (like.user.id === user.id) {
+        likeId = like.id;
+      }
+    });
+    await dispatch(removeLikeThunk(likeId));
+    dispatch(getTweets());
+    isLiked = false;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,10 +65,6 @@ const Feed = () => {
       ]);
       return;
     }
-
-    // if (errors.length > 0) {
-    //   return;
-    // }
 
     if (!description) {
       setErrors(["Tweet is required!"]);
@@ -145,45 +156,71 @@ const Feed = () => {
         </div>
         {sortedTweets &&
           comments &&
-          sortedTweets.map((tweet) => (
-            <div key={tweet.id} id={tweet.id} className="each-tweet">
-              <div className="tweet-username">
-                <div className="username-div">
+          sortedTweets.map((tweet) => {
+            let isLiked = false;
+            let likes = tweet.like_list;
+            Object.values(likes).forEach((like) => {
+              if (like.user.id === user.id) {
+                isLiked = true;
+                return;
+              }
+            });
+            return (
+              <div key={tweet.id} id={tweet.id} className="each-tweet">
+                <div className="tweet-username">
+                  <div className="username-div">
+                    <div>
+                      <img
+                        className="profile-image"
+                        src="https://i.imgur.com/vF8FTS2.png"
+                        alt="Profile"
+                      />
+                    </div>
+                    <div className="username-div">{tweet.user.username}</div>
+                    <div className="at-username">{`@${tweet.user.username}`}</div>
+                  </div>
                   <div>
-                    <img
-                      className="profile-image"
-                      src="https://i.imgur.com/vF8FTS2.png"
-                      alt="Profile"
-                    />
+                    <TweetOptionsModal tweet={tweet} />
                   </div>
-                  <div className="">{tweet.user.username}</div>
-                  <div className="at-username">{`@${tweet.user.username}`}</div>
                 </div>
-                <div>
-                  <TweetOptionsModal tweet={tweet} />
+                <NavLink to={`/tweets/${tweet.id}`} className="tweet-container">
+                  <pre className="description">{tweet?.description}</pre>
+                  {tweet.image_url && (
+                    <div className="imgDiv">
+                      <img
+                        className="image"
+                        alt=""
+                        src={tweet?.image_url}
+                        onError={({ currentTarget }) => {
+                          currentTarget.onerror = null; // prevents looping
+                          currentTarget.src =
+                            "https://wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg";
+                        }}
+                      ></img>
+                    </div>
+                  )}
+                </NavLink>
+                <div className="comments-div">
+                  <CreateCommentModal tweet={tweet} /> {tweet?.comments?.length}
+                </div>
+                <div className="like-button">
+                  <div className="posts-likes">{tweet.likes}</div>
+                  {likes && !isLiked ? (
+                    <div
+                      onClick={() => addLikePost(tweet, isLiked)}
+                      className="fa-regular fa-heart fa-xl"
+                    ></div>
+                  ) : (
+                    <i
+                      style={{ color: "#ED4956" }}
+                      onClick={() => removeLikePost(isLiked, likes)}
+                      className="fa-solid fa-heart fa-xl"
+                    ></i>
+                  )}
                 </div>
               </div>
-              <NavLink to={`/tweets/${tweet.id}`} className="tweet-container">
-                <pre className="description">{tweet?.description}</pre>
-                {tweet.image_url && (
-                  <div className="imgDiv">
-                    <img
-                      className="image"
-                      alt=""
-                      src={tweet?.image_url}
-                      onError={({ currentTarget }) => {
-                        currentTarget.onerror = null; // prevents looping
-                        currentTarget.src = "https://wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg";
-                      }}
-                    ></img>
-                  </div>
-                )}
-              </NavLink>
-              <div className="comments-div">
-                <CreateCommentModal tweet={tweet} /> {tweet?.comments?.length}
-              </div>
-            </div>
-          ))}
+            );
+          })}
       </div>
     </div>
   );
