@@ -201,21 +201,21 @@ const Feed = () => {
                 </NavLink>
                 <div className="comments-div">
                   <CreateCommentModal tweet={tweet} /> {tweet?.comments?.length}
-                </div>
-                <div className="like-button">
+                  <div className="likes-div">
+                    {likes && !isLiked ? (
+                      <div
+                        onClick={() => addLikePost(tweet, isLiked)}
+                        className="fa-regular fa-heart"
+                      ></div>
+                    ) : (
+                      <i
+                        style={{ color: "rgb(249, 24, 128)" }}
+                        onClick={() => removeLikePost(isLiked, likes)}
+                        className="fa-solid fa-heart"
+                      ></i>
+                    )}
+                  </div>
                   <div className="posts-likes">{tweet.likes}</div>
-                  {likes && !isLiked ? (
-                    <div
-                      onClick={() => addLikePost(tweet, isLiked)}
-                      className="fa-regular fa-heart fa-xl"
-                    ></div>
-                  ) : (
-                    <i
-                      style={{ color: "#ED4956" }}
-                      onClick={() => removeLikePost(isLiked, likes)}
-                      className="fa-solid fa-heart fa-xl"
-                    ></i>
-                  )}
                 </div>
               </div>
             );

@@ -72,7 +72,11 @@
   letter-spacing: 10px;
   margin-left: 55px;
   margin-top: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.likes-div {
+  margin-left: 200px;
 }
 
 .username-div {
