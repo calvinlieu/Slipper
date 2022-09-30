@@ -4,10 +4,6 @@
   border-radius: 50px;
 }
 
-.home-btn {
-  margin-bottom: 10px;
-}
-
 .logout-button {
   background-color: rgb(29, 155, 240);
   color: rgba(255, 255, 255, 0.951);
@@ -29,7 +25,6 @@
   border-radius: 50px;
   text-decoration: none;
   font: 14px;
-  border: 2px solid black;
   cursor: pointer;
 }
 
@@ -52,25 +47,78 @@
   color: rgba(255, 255, 255, 0.951);
   width: 227px;
   height: 47px;
-  font: 14px;
-  
 }
 
 .home-btn {
+  font-weight: 800;
+  font-size: 20px;
+  border-radius: 33px;
+}
+
+.about-linked-in {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(29, 155, 240);
-  width: 227px;
-  height: 45px;
-  border-radius: 50px;
   text-decoration: none;
-  font: 14px;
-  border: 2px solid black;
+  border-radius: 33px;
+  width: 227px;
+  height: 47px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+
+.linked-in-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.951);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+.feed-github {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 33px;
+  width: 227px;
+  height: 47px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.github-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.951);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.about-linked-in:hover {
+  background-color: rgba(247, 249, 249, 0.1);
+}
+
+.home-btn:hover {
+  background-color: rgba(247, 249, 249, 0.1);
+}
+
+.feed-github:hover {
+  background-color: rgba(247, 249, 249, 0.1);
 }
 
 .img-div {
-    margin-bottom: 100px;
+  margin-bottom: 100px;
 }
 
 .logout-div {
