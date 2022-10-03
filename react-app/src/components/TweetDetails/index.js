@@ -8,12 +8,17 @@ import EditCommentModal from "../EditComment";
 import TweetOptionsModal from "../TweetOptions";
 import NavBar from "../NavBar/NavBar";
 import CreateCommentModal from "../CreateComment";
+import {
+  removeLikeThunk,
+  addLikeThunk,
+  getTweetLikesThunk,
+} from "../../store/like";
 
 const TweetDetail = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   let { tweetId } = useParams();
-  const tweets = useSelector((state) => state.tweets)
+  const tweets = useSelector((state) => state.tweets);
   const tweet = useSelector((state) => state.tweets[tweetId]);
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector((state) => state?.session?.user);
@@ -21,20 +26,56 @@ const TweetDetail = () => {
   const tweetComments = Object.values(comments).filter(
     (comment) => comment?.tweet === tweet?.id
   );
-  const tweetString = JSON.stringify(tweets)
+  const tweetString = JSON.stringify(tweets);
+  const [isLiked, setIsLiked] = useState(false);
+  const likes = useSelector((state) => state.likes);
 
   useEffect(() => {
     dispatch(getTweets(tweetId));
     dispatch(getComments(tweetId));
-    setIsLoaded(true)
+    dispatch(getTweetLikesThunk(tweetId));
+    setIsLoaded(true);
     if (isLoaded && tweets && tweets[tweetId] === undefined) {
       history.push("/");
     }
-  }, [dispatch, tweetString]);
+  }, [dispatch, tweetString, tweetId]);
+
+  useEffect(() => {
+    Object.values(likes).forEach((like) => {
+      if (like.user.id === user.id) {
+        setIsLiked(true);
+        return;
+      }
+    });
+  }, [likes, user.id]);
 
   const handleDelete = async (commentId) => {
     await dispatch(deleteComment(commentId, tweetId));
-    await dispatch(getComments(tweetId))
+    await dispatch(getComments(tweetId));
+  };
+
+  const addLikePost = async (tweet, isLiked) => {
+    const payload = {
+      user_id: user.id,
+      tweet_id: tweet.id,
+    };
+
+    await dispatch(addLikeThunk(payload));
+    dispatch(getTweets());
+    isLiked = true;
+  };
+
+  const removeLikePost = async (isLiked, likes) => {
+    let likeId;
+    Object.values(likes).forEach((like) => {
+      if (like.user.id === user.id) {
+        likeId = like.id;
+      }
+    });
+    await dispatch(removeLikeThunk(likeId));
+    dispatch(getTweets());
+    isLiked = false;
+    setIsLiked(false);
   };
 
   return (
@@ -76,6 +117,21 @@ const TweetDetail = () => {
         )}
         <div className="comments-div">
           <CreateCommentModal tweet={tweet} /> {tweet?.comments?.length}
+          <div className="likes-div">
+            {likes && !isLiked ? (
+              <div
+                onClick={() => addLikePost(tweet, isLiked)}
+                className="fa-regular fa-heart"
+              ></div>
+            ) : (
+              <i
+                style={{ color: "rgb(249, 24, 128)" }}
+                onClick={() => removeLikePost(isLiked, likes)}
+                className="fa-solid fa-heart"
+              ></i>
+            )}
+          </div>
+          <div className="tweet-likes">{tweet?.likes}</div>
         </div>
         <div className="comments-section">
           {tweetComments &&
@@ -119,7 +175,6 @@ const TweetDetail = () => {
       </div>
     </div>
   );
-}; 
-
+};
 
 export default TweetDetail;

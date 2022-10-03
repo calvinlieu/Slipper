@@ -75,7 +75,10 @@
   margin-bottom: 10px;
 }
 
+
+
 .likes-div {
+  display: flex;
   margin-left: 200px;
 }
 
