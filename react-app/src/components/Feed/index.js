@@ -146,7 +146,6 @@ const Feed = () => {
                 onClick={handleSubmit}
                 className="create-post-btn"
                 type="submit"
-                // disabled={errors.length > 0}
               >
                 Tweet
               </button>
