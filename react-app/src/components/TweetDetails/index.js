@@ -47,7 +47,7 @@ const TweetDetail = () => {
         return;
       }
     });
-  }, [likes, user.id]);
+  }, [likes]);
 
   const handleDelete = async (commentId) => {
     await dispatch(deleteComment(commentId, tweetId));
