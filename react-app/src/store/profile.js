@@ -51,17 +51,22 @@ export const editProfileParams = (userProfile, userId) => async (dispatch) => {
 };
 
 const profileReducer = (state = {}, action) => {
-  let newState = {};
   switch (action.type) {
-    case GET_PROFILE:
+    case GET_PROFILE: {
+      let newState = {};
       newState = action.payload;
       return newState;
-    case DELETE_PROFILE:
+    }
+    case DELETE_PROFILE:{
+      let newState = {...state}
       delete newState[action.payload.id];
-    case EDIT_PROFILE:
-      newState = action.payload;
+      return newState
+    }
+    case EDIT_PROFILE: {
+      let newState = {...state}
+      newState[action.user.id] = action.payload;
       return newState;
-
+    }
     default:
       return state;
   }

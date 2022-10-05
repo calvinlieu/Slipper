@@ -4,11 +4,11 @@ from app.models import db, User
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password', profile_image_url="https://twirpz.wordpress.com/2015/06/01/egg-timer-the-history-of-twitters-default-profile-pic/")
+        username='Demo', email='demo@aa.io', password='password', profile_image_url="https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_4x3.jpg")
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password', profile_image_url="https://twirpz.wordpress.com/2015/06/01/egg-timer-the-history-of-twitters-default-profile-pic/")
+        username='marnie', email='marnie@aa.io', password='password', profile_image_url="https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2022-08/220805-border-collie-play-mn-1100-82d2f1.jpg")
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password', profile_image_url="https://twirpz.wordpress.com/2015/06/01/egg-timer-the-history-of-twitters-default-profile-pic/")
+        username='bobbie', email='bobbie@aa.io', password='password', profile_image_url="https://ggsc.s3.amazonaws.com/images/uploads/The_Science-Backed_Benefits_of_Being_a_Dog_Owner.jpg")
 
     db.session.add(demo)
     db.session.add(marnie)

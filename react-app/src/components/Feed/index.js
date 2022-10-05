@@ -24,6 +24,8 @@ const Feed = () => {
   const dispatch = useDispatch();
   const sortedTweets = tweets.sort().reverse();
 
+  console.log(user,"user")
+
   useEffect(() => {
     dispatch(getTweets(tweets.id));
     dispatch(getComments(comments.id));
@@ -170,7 +172,7 @@ const Feed = () => {
                     <div>
                       <img
                         className="profile-image"
-                        src="https://i.imgur.com/vF8FTS2.png"
+                        src={tweet.user.profile_image_url}
                         alt="Profile"
                       />
                     </div>
@@ -181,6 +183,7 @@ const Feed = () => {
                     <TweetOptionsModal tweet={tweet} />
                   </div>
                 </div>
+                <div className="tweet-div">
                 <NavLink to={`/tweets/${tweet.id}`} className="tweet-container">
                   <pre className="description">{tweet?.description}</pre>
                   {tweet.image_url && (
@@ -198,6 +201,7 @@ const Feed = () => {
                     </div>
                   )}
                 </NavLink>
+                </div>
                 <div className="comments-div">
                   <CreateCommentModal tweet={tweet} /> {tweet?.comments?.length}
                   <div className="likes-div">
