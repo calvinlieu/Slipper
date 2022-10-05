@@ -174,8 +174,8 @@ const Feed = () => {
                         alt="Profile"
                       />
                     </div>
-                    <div className="username-div">{tweet.user.username}</div>
-                    <div className="at-username">{`@${tweet.user.username}`}</div>
+                    <NavLink to={`/users/${tweet.user.id}`}className="username-div">{tweet.user.username}</NavLink>
+                    <NavLink to={`/users/${tweet.user.id}`}className="at-username">{`@${tweet.user.username}`}</NavLink>
                   </div>
                   <div>
                     <TweetOptionsModal tweet={tweet} />

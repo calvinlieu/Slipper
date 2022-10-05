@@ -4,12 +4,14 @@ import commentReducer from './comment';
 import likesReducer from './like';
 import session from './session'
 import tweetReducer from './tweet';
+import profileReducer from './profile';
 
 const rootReducer = combineReducers({
   session,
   tweets: tweetReducer,
   comments: commentReducer,
-  likes: likesReducer
+  likes: likesReducer,
+  profile: profileReducer
 });
 
 

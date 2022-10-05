@@ -57,9 +57,7 @@
   margin-top: 30px;
 }
 
-.username-div {
-  margin-left: 5px;
-}
+
 
 .createTweetFeed {
   width: 520px;
@@ -85,11 +83,15 @@
 .username-div {
   display: flex;
   flex-direction: row;
+  margin-left: 5px;
+  text-decoration: none;
+  color: white;
 }
 
 .at-username {
   margin-left: 5px;
   color: grey;
+  text-decoration: none;
 }
 
 .profile-image {
