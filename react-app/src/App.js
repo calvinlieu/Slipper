@@ -52,6 +52,7 @@ function App() {
           <Feed />
         </ProtectedRoute>
         <ProtectedRoute path="*">
+          <NavBar />
             <div className="pageNotFound">404 Page Not Found</div>
           </ProtectedRoute>
       </Switch>
