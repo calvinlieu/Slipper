@@ -32,6 +32,10 @@
   border: 1px solid grey;
 }
 
+.each-tweet:hover {
+  background-color: rgba(247, 249, 249, 0.1);
+}
+
 .feed-navbar {
   display: flex;
   position: fixed;
@@ -42,6 +46,8 @@
 .tweet-container {
   text-decoration: none;
 }
+
+
 
 .tweet-container:active {
   background-color: grey;
@@ -86,6 +92,10 @@
   margin-left: 5px;
   text-decoration: none;
   color: white;
+}
+
+.username-div:hover {
+  text-decoration: underline;
 }
 
 .at-username {
