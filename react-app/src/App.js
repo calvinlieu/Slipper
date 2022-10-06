@@ -34,13 +34,13 @@ function App() {
         <Route exact path="/sign-up">
           <SignUpForm />
         </Route>
-        <ProtectedRoute exact path="/users">
+        {/* <ProtectedRoute exact path="/users">
           <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute exact path="/users/:userId">
+        </ProtectedRoute> */}
+        <Route exact path="/users/:userId">
           <NavBar />
           <ProfilePage />
-        </ProtectedRoute>
+        </Route>
         <Route exact path="/tweets/create">
           <NavBar />
           <CreateTweetForm />
