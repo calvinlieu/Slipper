@@ -1,19 +1,22 @@
 .user-profile {
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
     justify-content: space-evenly;
+    margin-left: 175px;
 }
 .profile-picture {
-    height: 150px;
-    width: 150px;
+    height: 125px;
+    width: 125px;
     object-fit: cover;
     border-radius: 100px;
     z-index: 3;
+    border: 5px solid #15202B;
+    
 }
 
 .banner-picture {
     height: 250px;
-    width: 700px;
+    width: 520px;
     object-fit: cover;
+    
 }
