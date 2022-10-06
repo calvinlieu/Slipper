@@ -73,10 +73,11 @@
 .comments-div {
   display: flex;
   flex-direction: row;
-  letter-spacing: 10px;
   margin-left: 55px;
   margin-top: 10px;
   margin-bottom: 10px;
+  gap: 10px;
+  align-items: center;
 }
 
 

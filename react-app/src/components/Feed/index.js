@@ -24,7 +24,6 @@ const Feed = () => {
   const dispatch = useDispatch();
   const sortedTweets = tweets.sort().reverse();
 
-  console.log(user,"user")
 
   useEffect(() => {
     dispatch(getTweets(tweets.id));
@@ -106,7 +105,7 @@ const Feed = () => {
             <div>
               <img
                 className="profile-image"
-                src="https://i.imgur.com/vF8FTS2.png"
+                src={user.profile_image_url}
                 alt="Profile"
               />
             </div>
