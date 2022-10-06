@@ -89,7 +89,7 @@ const TweetDetail = () => {
             <div>
               <img
                 className="profile-image"
-                src="https://i.imgur.com/vF8FTS2.png"
+                src={tweet?.user.profile_image_url}
                 alt="Profile"
               />
             </div>
@@ -142,7 +142,7 @@ const TweetDetail = () => {
                     <div>
                       <img
                         className="profile-image"
-                        src="https://i.imgur.com/vF8FTS2.png"
+                        src={comments.user.profile_image_url}
                         alt="Profile"
                       />
                     </div>

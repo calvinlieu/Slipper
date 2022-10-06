@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Blueprint, request, redirect
 from app.models import db, Tweet, Comment, tweet
 from app.forms import TweetForm, CommentForm
@@ -16,6 +17,18 @@ def user_home():
         return response
     else:
         return "Unauthorized User!"
+
+#get tweets for a specific profile
+@tweet_routes.route("/profile/<user_id>", methods=["GET"])
+def profile_tweets(user_id):
+    if (current_user):
+        profile_tweets = Tweet.query.filter_by(user_id = user_id)
+        tweets = [tweet.to_dict() for tweet in profile_tweets]
+        response = {"tweets": tweets}
+        return response
+    else:
+        return "Unauthorized User!"
+    
 
 
 #tweet a tweet

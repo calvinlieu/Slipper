@@ -11,7 +11,6 @@ const NavBar = () => {
     window.open(url, "_blank", "noopener,noreferrer");
   };
   const user = useSelector((state) => state.session.user)
-  console.log(user)
 
   return (
     <nav className="whole-navbar">

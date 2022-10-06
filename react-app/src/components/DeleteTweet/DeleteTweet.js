@@ -9,7 +9,6 @@ function DeleteTweet({ tweet, onClick }) {
 
   const onDelete = () => {
     dispatch(deleteTweetThunk(tweet.id));
-    history.push("/");
   };
 
   return (

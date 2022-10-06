@@ -12,6 +12,7 @@ import CreateTweetForm from "./components/CreateTweet/CreateTweetForm";
 import "./index.css";
 import TweetDetail from "./components/TweetDetails";
 import ProfilePage from "./components/Profile/profile";
+import ProfilePagev2 from "./components/Profilev2/profile";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,8 +39,11 @@ function App() {
           <UsersList />
         </ProtectedRoute> */}
         <Route exact path="/users/:userId">
+          <div style={{display:"flex"}}>
           <NavBar />
           <ProfilePage />
+          </div>
+          {/* <ProfilePagev2 /> */}
         </Route>
         <Route exact path="/tweets/create">
           <NavBar />
@@ -53,8 +57,8 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="*">
           <NavBar />
-            <div className="pageNotFound">404 Page Not Found</div>
-          </ProtectedRoute>
+          <div className="pageNotFound">404 Page Not Found</div>
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );
