@@ -38,7 +38,7 @@ const TweetDetail = () => {
     if (isLoaded && tweets && tweets[tweetId] === undefined) {
       history.push("/");
     }
-  }, [dispatch, tweetString, tweetId]);
+  }, [dispatch, tweetId]);
 
   useEffect(() => {
     Object.values(likes).forEach((like) => {
@@ -116,7 +116,7 @@ const TweetDetail = () => {
           </div>
         )}
         <div className="comments-div">
-          <CreateCommentModal tweet={tweet} /> {tweet?.comments?.length}
+          <CreateCommentModal tweet={tweet} /> {tweetComments.length}
           <div className="likes-div">
             {likes && !isLiked ? (
               <div

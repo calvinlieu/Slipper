@@ -1,23 +1,23 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { deleteTweetThunk } from "../../store/tweet";
+import {deleteComment} from "../../store/comment"
 
-function DeleteComment({ tweet, onClick }) {
+function DeleteComment({ comment, onClick }) {
   let dispatch = useDispatch();
   let history = useHistory();
 
   const onDelete = () => {
-    dispatch(deleteTweetThunk(tweet.id));
+    dispatch(deleteComment(comment.id));
     history.push("/")
   };
 
   return (
     <div className="delete-post">
       <div className="delete-head">
-        <h3 className="delete-top-modal">Delete post?</h3>
+        <h3 className="delete-top-modal">Delete Comment?</h3>
         <div className="confirmation-delete-msg">
-          Are you sure you want to delete this tweet?
+          Are you sure you want to delete this comment?
         </div>
       </div>
       <div className="delete-btns-outer">
