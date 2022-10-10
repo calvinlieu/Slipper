@@ -1,7 +1,14 @@
 const GET_TWEET_LIKES = "likes/get-tweet-likes"
 const ADD_LIKE = "likes/add-like"
 const REMOVE_LIKE = "likes/remove-like"
+const GET_ALL_LIKES = "likes/get-all"
 
+const getAllLikes = (likes) => {
+    return {
+        type: GET_ALL_LIKES,
+        likes
+    }
+}
 
 const getTweetLikes = (likes) => {
     return {
@@ -24,6 +31,19 @@ const removeLike = (likeId) => {
     }
 }
 
+export const getAllLikesThunk = () => async dispatch => {
+    const res = await fetch(`/api/likes`)
+    if (res.ok) {
+        const likes = await res.json();
+        dispatch(getAllLikes(likes))
+        const all = {};
+        likes.likes.forEach((like) => all[like.id] = like)
+        return {...all}
+    }
+
+    return {}
+
+}
 export const getTweetLikesThunk = (tweetId) => async dispatch => {
     const res = await fetch(`/api/likes/tweets/${tweetId}`)
 
@@ -62,21 +82,22 @@ export default function likesReducer(state = {}, action) {
         case GET_TWEET_LIKES: {
             let newState = {}
             action.likes.likes.forEach(like => newState[like.id] = like)
-            return newState
+            return newState;
         }
         case ADD_LIKE: {
             let newState = {...state}
-            
             newState[action.like.id] = action.like
-            
-
-            return newState
+            return newState;
         }
         case REMOVE_LIKE: {
             let newState = {...state}
             delete newState[action.likeId]
-
-            return newState
+            return newState;
+        }
+        case GET_ALL_LIKES: {
+            let newState = {};
+            action.likes.likes.forEach(like => newState[like.id] = like)
+            return newState;
         }
         default:
             return state

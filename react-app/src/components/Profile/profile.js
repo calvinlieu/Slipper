@@ -12,9 +12,10 @@ import {
   removeLikeThunk,
   addLikeThunk,
   getTweetLikesThunk,
+  getAllLikesThunk
 } from "../../store/like";
-import { getAllProfileTweets, createTweet, getTweets } from "../../store/tweet";
-import NavBar from "../NavBar/NavBar";
+import { getAllProfileTweets } from "../../store/tweet";
+import Likes from "../Likes/like";
 
 const ProfilePage = () => {
   const user = useSelector((state) => state?.session.user);
@@ -22,26 +23,26 @@ const ProfilePage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { userId } = useParams();
-  const [isLiked, setIsLiked] = useState(false);
   const comments = useSelector((state) => Object.values(state.comments));
-  const likes = useSelector((state) => state.likes);
+  const userLikes = useSelector((state) => Object.values(state.likes));
   const tweets = useSelector((state) => (state.tweets));
 
   console.log(userProfile, "userProfile")
   console.log(tweets, "tweets")
   console.log(user, "user")
+  console.log(userLikes, "likes")
+
+ 
 
   useEffect(() => {
-    dispatch(getComments(tweets.id));
-    dispatch(getTweetLikesThunk(tweets.id));
-  }, [dispatch, JSON.stringify(tweets), JSON.stringify(comments), isLiked]);
-
-  useEffect(() => {
+    dispatch(getAllLikesThunk());
     dispatch(getProfileThunk(userId));
     dispatch(getAllProfileTweets(userId));
-  }, [dispatch, userId, isLiked, JSON.stringify(comments)]);
+  }, [dispatch, JSON.stringify(tweets), JSON.stringify(comments), userId]);
 
-  const addLikePost = async (tweet, isLiked) => {
+
+
+  const addLikePost = async (tweet) => {
 
     const payload = {
       user_id: user.id,
@@ -49,22 +50,23 @@ const ProfilePage = () => {
     };
 
     dispatch(addLikeThunk(payload));
-    setIsLiked(prev => !prev);
+    dispatch(getAllProfileTweets(userId));
   };
 
   const removeLikePost = async (likes_list) => { 
     let likeId;
     for (const like of likes_list) {
       if (like.user.id === user.id) {
+        console.log(like.user.id, user.id, "inside")
         likeId = like.id
         break;  
       }
     }
     dispatch(removeLikeThunk(likeId));
-    setIsLiked(prev => !prev);
+    dispatch(getAllProfileTweets(userId));
   };
 
-  
+
 
   return (
     <div className="user-profile">
@@ -128,20 +130,7 @@ const ProfilePage = () => {
               </div>
               <div className="comments-div">
                 <CreateCommentModal tweet={tweet} /> {tweet?.comments?.length}
-                <div className="likes-div">
-                  {likes.user?.id === user?.id ? (
-                    <div
-                      onClick={() => addLikePost(tweet, isLiked)}
-                      className="fa-regular fa-heart"
-                    ></div>
-                  ) : (
-                    <i
-                      style={{ color: "rgb(249, 24, 128)" }}
-                      onClick={() => removeLikePost(tweet.like_list)}
-                      className="fa-solid fa-heart"
-                    ></i>
-                  )}
-                </div>
+                <Likes tweet={tweet} addLikePost={addLikePost} removeLikePost={removeLikePost} user={user} likes={userLikes} tweets={tweets} userProfile={userProfile}/>
                 <div className="posts-likes">{tweet.likes}</div>
               </div>
             </div>
