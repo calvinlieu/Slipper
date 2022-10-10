@@ -43,7 +43,7 @@ export const addLikeThunk = (payload) => async dispatch => {
 
     if (res.ok) {
         const like = await res.json()
-        dispatch(addLike(like))
+        await dispatch(addLike(like))
         return like
     }
 }
@@ -53,6 +53,7 @@ export const removeLikeThunk = (likeId) => async dispatch => {
 
     if (res.ok) {
         dispatch(removeLike(likeId))
+        
     }
 }
 
@@ -65,12 +66,16 @@ export default function likesReducer(state = {}, action) {
         }
         case ADD_LIKE: {
             let newState = {...state}
+            
             newState[action.like.id] = action.like
+            
+
             return newState
         }
         case REMOVE_LIKE: {
             let newState = {...state}
             delete newState[action.likeId]
+
             return newState
         }
         default:
