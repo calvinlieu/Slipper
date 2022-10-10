@@ -38,3 +38,8 @@
     margin: 0 10px 20px;
 
 }
+
+.delete-tweet-button {
+    margin-left: 5px;
+    font-size: 20px;
+}

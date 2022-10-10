@@ -20,10 +20,9 @@ const update = (comment, commentId) => ({
   commentId
 });
 
-const remove = (commentId, tweetId) => ({
+const remove = (commentId) => ({
   type: REMOVE_COMMENT,
   commentId,
-  tweetId,
 });
 
 export const getComments = (tweetId) => async (dispatch) => {
@@ -69,13 +68,13 @@ export const editComment = (payload, commentId) => async(dispatch) => {
 }
 
 //delete a tweet
-export const deleteComment = (commentId, tweetId) => async (dispatch) => {
+export const deleteComment = (commentId) => async (dispatch) => {
   const response = await fetch(`/api/comments/${commentId}`, {
     method: "DELETE",
   });
 
   if (response.ok) {
-    dispatch(remove(commentId, tweetId));
+    dispatch(remove(commentId));
   }
 };
 
