@@ -26,12 +26,6 @@ const ProfilePage = () => {
   const comments = useSelector((state) => Object.values(state.comments));
   const userLikes = useSelector((state) => Object.values(state.likes));
   const tweets = useSelector((state) => (state.tweets));
-
-  console.log(userProfile, "userProfile")
-  console.log(tweets, "tweets")
-  console.log(user, "user")
-  console.log(userLikes, "likes")
-
  
 
   useEffect(() => {
@@ -57,7 +51,6 @@ const ProfilePage = () => {
     let likeId;
     for (const like of likes_list) {
       if (like.user.id === user.id) {
-        console.log(like.user.id, user.id, "inside")
         likeId = like.id
         break;  
       }

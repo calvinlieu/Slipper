@@ -15,14 +15,12 @@ const Likes = ({ addLikePost, removeLikePost, tweet, user, likes, userProfile })
   const userHasLiked = () => {
     for (let i = 0; i < tweet.like_list.length; i++) {
       if (user.id === tweet.like_list[i].user_id) {
-        console.log("userId", user.id, tweet.like_list[i].user_id, tweet.id)
         setIsLiked(true);
         return;
       }
     }
   };
 
-  console.log(likes, "likes!")
 
   return (
     <div className="likes-div">
