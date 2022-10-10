@@ -14,7 +14,7 @@ def get_likes(tweet_id):
 
 @likes_routes.route('/', methods=["POST"])
 def like():
-    if not current_user.is_authenticated: # beginning of error handling(is_authenticated is a boolean not a function)
+    if not current_user.is_authenticated:
         return { 'errors': ['Unauthorized, please log in'] }
 
     form = LikeForm()

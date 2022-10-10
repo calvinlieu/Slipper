@@ -23,7 +23,7 @@ const Feed = () => {
   const comments = useSelector((state) => Object.values(state.comments));
   const dispatch = useDispatch();
   const sortedTweets = tweets.sort().reverse();
-
+  
 
   useEffect(() => {
     dispatch(getTweets(tweets.id));
@@ -43,6 +43,7 @@ const Feed = () => {
 
   const removeLikePost = async (isLiked, likes) => {
     let likeId;
+
     Object.values(likes).forEach((like) => {
       if (like.user.id === user.id) {
         likeId = like.id;

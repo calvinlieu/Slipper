@@ -5,7 +5,7 @@ import { getProfileThunk } from "../../store/profile";
 import { NavLink } from "react-router-dom";
 import { getComments } from "../../store/comment";
 import "./profile.css";
-import "../Feed/Feed.css"
+import "../Feed/Feed.css";
 import TweetOptionsModal from "../TweetOptions";
 import CreateCommentModal from "../CreateComment";
 import {
@@ -27,38 +27,41 @@ const ProfilePage = () => {
   const comments = useSelector((state) => Object.values(state.comments));
   const likes = useSelector((state) => state.likes);
 
-  console.log(userProfile, )
+  console.log(userProfile, "userProfile")
 
+  console.log(user, "user")
+
+  useEffect(() => {
+    dispatch(getComments(tweets.id));
+    dispatch(getTweetLikesThunk(tweets.id));
+  }, [dispatch, JSON.stringify(tweets), JSON.stringify(comments), isLiked]);
 
   useEffect(() => {
     dispatch(getProfileThunk(userId));
     dispatch(getAllProfileTweets(userId));
-    dispatch(getComments(tweets.id));
-    dispatch(getTweetLikesThunk(tweets.id));
-    if (userProfile === undefined) {
-      history.push("/");
-    }
-  }, [dispatch, JSON.stringify(tweets), userId, JSON.stringify(comments), isLiked]);
-  
+  }, [dispatch, userId, isLiked, JSON.stringify(comments)]);
 
-  const addLikePost = async (tweet) => {
+  const addLikePost = async (tweet, isLiked) => {
+
     const payload = {
       user_id: user.id,
       tweet_id: tweet.id,
     };
+
     dispatch(addLikeThunk(payload));
-    setIsLiked(true)
+    setIsLiked(prev => !prev);
   };
 
-  const removeLikePost = async (isLiked, likes) => {
+  const removeLikePost = async (likes_list) => { 
     let likeId;
-    Object.values(likes).forEach((like) => {
+    for (const like of likes_list) {
       if (like.user.id === user.id) {
-        likeId = like.id;
+        likeId = like.id
+        break;  
       }
-    });
-    await dispatch(removeLikeThunk(likeId));
-    setIsLiked(false)
+    }
+    dispatch(removeLikeThunk(likeId));
+    setIsLiked(prev => !prev);
   };
 
   return (
@@ -76,7 +79,6 @@ const ProfilePage = () => {
       <div>@{userProfile.profile?.username}</div>
       <div>
         {userProfile.tweets?.map((tweet) => {
-          let likes = tweet.like_list;
           return (
             <div key={tweet.id} id={tweet.id} className="each-tweet">
               <div className="tweet-username">
@@ -125,7 +127,7 @@ const ProfilePage = () => {
               <div className="comments-div">
                 <CreateCommentModal tweet={tweet} /> {tweet?.comments?.length}
                 <div className="likes-div">
-                  {!isLiked ? (
+                  {likes.user?.id === user?.id ? (
                     <div
                       onClick={() => addLikePost(tweet, isLiked)}
                       className="fa-regular fa-heart"
@@ -133,7 +135,7 @@ const ProfilePage = () => {
                   ) : (
                     <i
                       style={{ color: "rgb(249, 24, 128)" }}
-                      onClick={() => removeLikePost(isLiked, likes)}
+                      onClick={() => removeLikePost(tweet.like_list)}
                       className="fa-solid fa-heart"
                     ></i>
                   )}
