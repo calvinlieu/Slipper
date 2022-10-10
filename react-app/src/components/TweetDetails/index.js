@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getTweets } from "../../store/tweet";
-import { deleteComment, getComments } from "../../store/comment";
+import {  getComments } from "../../store/comment";
 import "./TweetDetails.css";
 import EditCommentModal from "../EditComment";
+import DeleteCommentModal from "../DeleteComment";
 import TweetOptionsModal from "../TweetOptions";
 import NavBar from "../NavBar/NavBar";
 import CreateCommentModal from "../CreateComment";
@@ -49,10 +50,10 @@ const TweetDetail = () => {
     });
   }, [likes]);
 
-  const handleDelete = async (commentId) => {
-    await dispatch(deleteComment(commentId, tweetId));
-    await dispatch(getComments(tweetId));
-  };
+  // const handleDelete = async (commentId) => {
+  //   await dispatch(deleteComment(commentId, tweetId));
+  //   await dispatch(getComments(tweetId));
+  // };
 
   const addLikePost = async (tweet, isLiked) => {
     const payload = {
@@ -157,12 +158,15 @@ const TweetDetail = () => {
                           <div>
                             <EditCommentModal commentId={comments.id} />
                           </div>
-                          <img
+                          <div>
+                            <DeleteCommentModal commentId={comments.id} tweet={tweet.id} />
+                          </div>
+                          {/* <img
                             onClick={() => handleDelete(comments.id)}
                             className="comment-del-btn"
                             src="https://cdn-icons-png.flaticon.com/512/3300/3300464.png"
                             alt=""
-                          />
+                          /> */}
                         </>
                       )}
                     </div>

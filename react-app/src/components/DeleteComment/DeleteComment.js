@@ -1,15 +1,18 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import {deleteComment} from "../../store/comment"
+import {deleteComment, getComments} from "../../store/comment"
+import { getTweets } from "../../store/tweet";
+import "./DeleteComment.css"
 
-function DeleteComment({ comment, onClick }) {
+function DeleteComment({ comment, tweet, onClick }) {
   let dispatch = useDispatch();
   let history = useHistory();
 
   const onDelete = () => {
-    dispatch(deleteComment(comment.id));
-    history.push("/")
+    dispatch(deleteComment(comment));
+    dispatch(getComments(tweet))
+    dispatch(getTweets(tweet))
   };
 
   return (

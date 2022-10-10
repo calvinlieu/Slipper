@@ -19,16 +19,16 @@ import NavBar from "../NavBar/NavBar";
 const ProfilePage = () => {
   const user = useSelector((state) => state?.session.user);
   const userProfile = useSelector((state) => state?.profile);
-  const tweets = useSelector((state) => Object.values(state.tweets));
   const dispatch = useDispatch();
   const history = useHistory();
   const { userId } = useParams();
   const [isLiked, setIsLiked] = useState(false);
   const comments = useSelector((state) => Object.values(state.comments));
   const likes = useSelector((state) => state.likes);
+  const tweets = useSelector((state) => (state.tweets));
 
   console.log(userProfile, "userProfile")
-
+  console.log(tweets, "tweets")
   console.log(user, "user")
 
   useEffect(() => {
@@ -64,6 +64,8 @@ const ProfilePage = () => {
     setIsLiked(prev => !prev);
   };
 
+  
+
   return (
     <div className="user-profile">
       <div>{userProfile.tweets?.length} Tweets</div>
@@ -80,7 +82,7 @@ const ProfilePage = () => {
       <div>
         {userProfile.tweets?.map((tweet) => {
           return (
-            <div key={tweet.id} id={tweet.id} className="each-tweet">
+            <div key={tweet.id} id={tweet.id} tweet={tweet} className="each-tweet">
               <div className="tweet-username">
                 <div className="username-div">
                   <div>
