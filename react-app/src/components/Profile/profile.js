@@ -25,14 +25,16 @@ const ProfilePage = () => {
   const comments = useSelector((state) => Object.values(state.comments));
   const tweets = useSelector((state) => state.tweets);
   const likes = useSelector((state) => state.likes);
-  const profileTweets = userProfile?.tweets?.sort((a,b) => a.createdAt - b.createdAt)
-  console.log(userProfile, "userprofile")
+  const profileTweets = userProfile?.tweets?.sort((a,b) => a.id - b.id)
+
+
   console.log(profileTweets, "profile")
+
 
   useEffect(() => {
     dispatch(getProfileThunk(userId));
     dispatch(getAllLikesThunk());
-  }, [dispatch, JSON.stringify(comments), JSON.stringify(likes)]);
+  }, [dispatch, JSON.stringify(comments), JSON.stringify(likes), userId]);
 
   useEffect(() => {
     Object.values(likes).forEach((like) => {
