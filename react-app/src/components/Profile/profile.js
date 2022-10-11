@@ -11,7 +11,6 @@ import CreateCommentModal from "../CreateComment";
 import {
   removeLikeThunk,
   addLikeThunk,
-  getTweetLikesThunk,
   getAllLikesThunk,
 } from "../../store/like";
 import { getAllProfileTweets } from "../../store/tweet";
@@ -27,12 +26,14 @@ const ProfilePage = () => {
   const tweets = useSelector((state) => state.tweets);
   const likes = useSelector((state) => state.likes);
 
+  console.log(userProfile, "userProfile")
+
 
 
   useEffect(() => {
     dispatch(getProfileThunk(userId));
     dispatch(getAllLikesThunk());
-    dispatch(getAllProfileTweets(userId));
+    // dispatch(getAllProfileTweets(userId));
   }, [dispatch, JSON.stringify(tweets), JSON.stringify(comments), userId]);
 
   useEffect(() => {
@@ -59,7 +60,6 @@ const ProfilePage = () => {
       return;
     }
     dispatch(removeLikeThunk(like));
-    dispatch(getProfileThunk(userId));
   };
 
   return (
@@ -81,7 +81,7 @@ const ProfilePage = () => {
         {userProfile.tweets?.map((tweet) => {
           const tweetIsLiked = Object.values(likes).find(like => like.tweet_id === tweet.id) !== undefined;
           const numLikes = Object.values(likes).filter(like => like.tweet_id === tweet.id).length;
-          const foundLike = Object.values(likes).find(like => like.tweet_id === tweet.id && like.user_id === tweet.user.id)
+          const foundLike = Object.values(likes).find(like => like.tweet_id === tweet.id)
           return (
             <div
               key={tweet.id}
