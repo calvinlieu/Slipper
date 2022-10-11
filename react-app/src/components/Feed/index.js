@@ -12,6 +12,7 @@ import {
   removeLikeThunk,
   addLikeThunk,
   getTweetLikesThunk,
+  removeFeedLikeThunk,
 } from "../../store/like";
 
 const Feed = () => {
@@ -49,7 +50,7 @@ const Feed = () => {
         likeId = like.id;
       }
     });
-    await dispatch(removeLikeThunk(likeId));
+    await dispatch(removeFeedLikeThunk(likeId));
     dispatch(getTweets());
     isLiked = false;
   };
