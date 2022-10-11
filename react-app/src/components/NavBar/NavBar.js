@@ -33,7 +33,7 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div className="home-btn">
-          <NavLink to={`/users/${user.id}`} exact={true} className="home-text">
+          <NavLink to={`/users/${user?.id}`} exact={true} className="home-text">
             <div className="icon">
             <i className="fa-solid fa-user"></i>
             </div>
