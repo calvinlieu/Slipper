@@ -34,15 +34,15 @@ const ProfilePage = () => {
     dispatch(getProfileThunk(userId));
     dispatch(getAllLikesThunk());
     // dispatch(getAllProfileTweets(userId));
-  }, [dispatch, JSON.stringify(tweets), JSON.stringify(comments), userId]);
+  }, [dispatch, JSON.stringify(tweets), JSON.stringify(comments), JSON.stringify(likes)]);
 
-  useEffect(() => {
-    Object.values(likes).forEach((like) => {
-      if (like.user.id === user.id) { 
-        return;
-      }
-    });
-  }, [likes]);
+  // useEffect(() => {
+  //   Object.values(likes).forEach((like) => {
+  //     if (like.user.id === user.id) { 
+  //       return;
+  //     }
+  //   });
+  // }, [likes]);
 
   const addLikePost = async (tweet) => {
     const payload = {
