@@ -4,6 +4,7 @@ import LogoutButton from "../auth/LogoutButton";
 import CreateTweetModal from "../CreateTweet";
 import { useSelector, useDispatch } from "react-redux";
 import "./NavBar.css";
+import { getProfileThunk } from "../../store/profile";
 
 const NavBar = () => {
   const openInNewTab = (url) => {
@@ -33,7 +34,7 @@ const NavBar = () => {
           </NavLink>
         </div>
         <div className="home-btn">
-          <NavLink to={`/users/${user?.id}`} exact={true} className="home-text">
+          <NavLink to={`/users/${user.id}`} exact={true} className="home-text">
             <div className="icon">
             <i className="fa-solid fa-user"></i>
             </div>
