@@ -25,24 +25,20 @@ const ProfilePage = () => {
   const comments = useSelector((state) => Object.values(state.comments));
   const tweets = useSelector((state) => state.tweets);
   const likes = useSelector((state) => state.likes);
-
-  console.log(userProfile, "userProfile")
-
-
+  const userTweets = Object.values(tweets).filter((tweet) => tweet.user.id === userId)
 
   useEffect(() => {
     dispatch(getProfileThunk(userId));
     dispatch(getAllLikesThunk());
-    // dispatch(getAllProfileTweets(userId));
-  }, [dispatch, JSON.stringify(tweets), JSON.stringify(comments), JSON.stringify(likes)]);
+  }, [dispatch, JSON.stringify(comments), JSON.stringify(likes)]);
 
-  // useEffect(() => {
-  //   Object.values(likes).forEach((like) => {
-  //     if (like.user.id === user.id) { 
-  //       return;
-  //     }
-  //   });
-  // }, [likes]);
+  useEffect(() => {
+    Object.values(likes).forEach((like) => {
+      if (like.user.id === user.id) { 
+        return;
+      }
+    });
+  }, [likes]);
 
   const addLikePost = async (tweet) => {
     const payload = {
