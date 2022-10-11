@@ -25,7 +25,9 @@ const ProfilePage = () => {
   const comments = useSelector((state) => Object.values(state.comments));
   const tweets = useSelector((state) => state.tweets);
   const likes = useSelector((state) => state.likes);
-  const userTweets = Object.values(tweets).filter((tweet) => tweet.user.id === userId)
+  const profileTweets = userProfile?.tweets?.sort((a,b) => a.createdAt - b.createdAt)
+  console.log(userProfile, "userprofile")
+  console.log(profileTweets, "profile")
 
   useEffect(() => {
     dispatch(getProfileThunk(userId));
@@ -34,7 +36,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     Object.values(likes).forEach((like) => {
-      if (like.user.id === user.id) { 
+      if (like.user.id === user.id) {
         return;
       }
     });
@@ -48,7 +50,6 @@ const ProfilePage = () => {
 
     dispatch(addLikeThunk(payload));
     dispatch(getProfileThunk(userId));
-   
   };
 
   const removeLikePost = async (like) => {
@@ -60,6 +61,7 @@ const ProfilePage = () => {
 
   return (
     <div className="user-profile">
+      <div className="top-profile-username">{userProfile.profile?.username}</div>
       <div>{userProfile.tweets?.length} Tweets</div>
       <div className="profile-image-container">
         <img
@@ -71,13 +73,26 @@ const ProfilePage = () => {
           src={userProfile.profile?.profile_image_url}
         ></img>
       </div>
-      <div>{userProfile.profile?.username}</div>
-      <div>@{userProfile.profile?.username}</div>
+      <div className="username-info-div">
+        <div className="profile-username">{userProfile.profile?.username}</div>
+        <div className="profile-at-username">@{userProfile.profile?.username}</div>
+        <div className="profile-bio">{userProfile.profile?.bio}</div>
+        <div className="profile-follow">
+        <div>{userProfile.following_count} Following</div>
+        <div className="profile-followers">{userProfile.follower_count} Followers</div>
+        </div>
+      </div>
       <div>
-        {userProfile.tweets?.map((tweet) => {
-          const tweetIsLiked = Object.values(likes).find(like => like.tweet_id === tweet.id) !== undefined;
-          const numLikes = Object.values(likes).filter(like => like.tweet_id === tweet.id).length;
-          const foundLike = Object.values(likes).find(like => like.tweet_id === tweet.id)
+        {profileTweets?.map((tweet) => {
+          const tweetIsLiked =
+            Object.values(likes).find((like) => like.tweet_id === tweet.id) !==
+            undefined;
+          const numLikes = Object.values(likes).filter(
+            (like) => like.tweet_id === tweet.id
+          ).length;
+          const foundLike = Object.values(likes).find(
+            (like) => like.tweet_id === tweet.id
+          );
           return (
             <div
               key={tweet.id}
