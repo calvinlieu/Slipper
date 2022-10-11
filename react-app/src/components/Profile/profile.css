@@ -4,19 +4,43 @@
     justify-content: space-evenly;
     margin-left: 175px;
 }
+
+.profile-image-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 50px;
+    border: 1px solid grey;
+}
 .profile-picture {
     height: 125px;
     width: 125px;
     object-fit: cover;
     border-radius: 100px;
-    z-index: 3;
     border: 5px solid #15202B;
-    
+    position: absolute;
+    bottom: -50px;
+    left: 20px;
 }
 
 .banner-picture {
     height: 250px;
     width: 520px;
     object-fit: cover;
+    position: relative;
     
+}
+
+.userName-div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.profile-username {
+    color: rgba(255, 255, 255, 0.951);
+}
+
+.profile-at-username {
+    color: grey
 }

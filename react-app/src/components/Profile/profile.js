@@ -12,7 +12,7 @@ import {
   removeLikeThunk,
   addLikeThunk,
   getTweetLikesThunk,
-  getAllLikesThunk
+  getAllLikesThunk,
 } from "../../store/like";
 import { getAllProfileTweets } from "../../store/tweet";
 import Likes from "../Likes/like";
@@ -24,60 +24,71 @@ const ProfilePage = () => {
   const history = useHistory();
   const { userId } = useParams();
   const comments = useSelector((state) => Object.values(state.comments));
-  const userLikes = useSelector((state) => Object.values(state.likes));
-  const tweets = useSelector((state) => (state.tweets));
- 
+  const tweets = useSelector((state) => state.tweets);
+  const likes = useSelector((state) => state.likes);
+
+
 
   useEffect(() => {
-    dispatch(getAllLikesThunk());
     dispatch(getProfileThunk(userId));
+    dispatch(getAllLikesThunk());
     dispatch(getAllProfileTweets(userId));
   }, [dispatch, JSON.stringify(tweets), JSON.stringify(comments), userId]);
 
-
+  useEffect(() => {
+    Object.values(likes).forEach((like) => {
+      if (like.user.id === user.id) { 
+        return;
+      }
+    });
+  }, [likes]);
 
   const addLikePost = async (tweet) => {
-
     const payload = {
       user_id: user.id,
       tweet_id: tweet.id,
     };
 
     dispatch(addLikeThunk(payload));
-    dispatch(getAllProfileTweets(userId));
+    dispatch(getProfileThunk(userId));
+   
   };
 
-  const removeLikePost = async (likes_list) => { 
-    let likeId;
-    for (const like of likes_list) {
-      if (like.user.id === user.id) {
-        likeId = like.id
-        break;  
-      }
+  const removeLikePost = async (like) => {
+    if (like === undefined) {
+      return;
     }
-    dispatch(removeLikeThunk(likeId));
-    dispatch(getAllProfileTweets(userId));
+    dispatch(removeLikeThunk(like));
+    dispatch(getProfileThunk(userId));
   };
-
-
 
   return (
     <div className="user-profile">
       <div>{userProfile.tweets?.length} Tweets</div>
-      <img
-        className="banner-picture"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg/1200px-Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg"
-      ></img>
-      <img
-        className="profile-picture"
-        src={userProfile.profile?.profile_image_url}
-      ></img>
+      <div className="profile-image-container">
+        <img
+          className="banner-picture"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg/1200px-Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg"
+        ></img>
+        <img
+          className="profile-picture"
+          src={userProfile.profile?.profile_image_url}
+        ></img>
+      </div>
       <div>{userProfile.profile?.username}</div>
       <div>@{userProfile.profile?.username}</div>
       <div>
         {userProfile.tweets?.map((tweet) => {
+          const tweetIsLiked = Object.values(likes).find(like => like.tweet_id === tweet.id) !== undefined;
+          const numLikes = Object.values(likes).filter(like => like.tweet_id === tweet.id).length;
+          const foundLike = Object.values(likes).find(like => like.tweet_id === tweet.id && like.user_id === tweet.user.id)
           return (
-            <div key={tweet.id} id={tweet.id} tweet={tweet} className="each-tweet">
+            <div
+              key={tweet.id}
+              id={tweet.id}
+              tweet={tweet}
+              className="each-tweet"
+            >
               <div className="tweet-username">
                 <div className="username-div">
                   <div>
@@ -123,8 +134,21 @@ const ProfilePage = () => {
               </div>
               <div className="comments-div">
                 <CreateCommentModal tweet={tweet} /> {tweet?.comments?.length}
-                <Likes tweet={tweet} addLikePost={addLikePost} removeLikePost={removeLikePost} user={user} likes={userLikes} tweets={tweets} userProfile={userProfile}/>
-                <div className="posts-likes">{tweet.likes}</div>
+                <div className="likes-div">
+                  {!tweetIsLiked ? (
+                    <div
+                      onClick={() => addLikePost(tweet)}
+                      className="fa-regular fa-heart"
+                    ></div>
+                  ) : (
+                    <i
+                      style={{ color: "rgb(249, 24, 128)" }}
+                      onClick={() => removeLikePost(foundLike)}
+                      className="fa-solid fa-heart"
+                    ></i>
+                  )}
+                </div>
+                <div className="posts-likes">{numLikes}</div>
               </div>
             </div>
           );

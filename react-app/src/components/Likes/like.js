@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProfileTweets } from "../../store/tweet";
+import { getTweetLikesThunk } from "../../store/like";
 
 const Likes = ({ addLikePost, removeLikePost, tweet, user, likes, userProfile }) => {
   const [isLiked, setIsLiked] = useState(false);
  
 
-  useEffect(() => {
+  useEffect((e) => {
     userHasLiked();
     getAllProfileTweets()
+    getTweetLikesThunk(tweet.id)
   }, [JSON.stringify(userProfile)]);
 
   const userHasLiked = () => {
