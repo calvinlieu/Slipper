@@ -73,4 +73,12 @@
 .top-profile-username {
     font-size: 20px;
     font-weight: 700;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.top-tweets {
+    margin-left: 20px;
+    color: grey;
+    margin-bottom: 10px;
 }

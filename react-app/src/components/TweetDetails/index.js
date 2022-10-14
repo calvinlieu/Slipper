@@ -15,6 +15,7 @@ import {
   getTweetLikesThunk,
   removeFeedLikeThunk,
 } from "../../store/like";
+import { NavLink } from "react-router-dom";
 
 const TweetDetail = () => {
   const dispatch = useDispatch();
@@ -50,11 +51,6 @@ const TweetDetail = () => {
       }
     });
   }, [likes]);
-
-  // const handleDelete = async (commentId) => {
-  //   await dispatch(deleteComment(commentId, tweetId));
-  //   await dispatch(getComments(tweetId));
-  // };
 
   const addLikePost = async (tweet, isLiked) => {
     const payload = {
@@ -95,8 +91,8 @@ const TweetDetail = () => {
                 alt="Profile"
               />
             </div>
-            <div className="">{tweet?.user?.username}</div>
-            <div className="individual-username">{`@${tweet?.user?.username}`}</div>
+            <NavLink to={`/users/${tweet?.user?.id}`} className="username-div">{tweet?.user?.username}</NavLink>
+            <NavLink to={`/users/${tweet?.user?.id}`}className="at-username">{`@${tweet?.user?.username}`}</NavLink>
           </div>
           <div className="options-modal">
             <TweetOptionsModal tweet={tweet} />

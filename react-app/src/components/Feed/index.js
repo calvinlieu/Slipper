@@ -24,6 +24,19 @@ const Feed = () => {
   const comments = useSelector((state) => Object.values(state.comments));
   const dispatch = useDispatch();
   const sortedTweets = tweets.sort().reverse();
+
+  useEffect(() => {
+    const errors = [];
+    const imgRegex = new RegExp(
+      /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/
+    );
+    if (imageUrl && !imgRegex.test(imageUrl)) {
+      errors.push(
+        "Invalid Image Url! URL must start with https:// and contain a .png, .jpg, .jpeg, .gif, .png or .svg!",
+      );
+    }
+    setErrors(errors);
+  }, [imageUrl]);
   
 
   useEffect(() => {
@@ -63,7 +76,7 @@ const Feed = () => {
 
     if (imageUrl && !imgRegex.test(imageUrl)) {
       setErrors([
-        "Invalid Image Url! URL must contain a .png, .jpg, .jpeg, .gif, .png or .svg!",
+        "Invalid Image Url! URL must start with https:// and contain a .png, .jpg, .jpeg, .gif, .png or .svg!",
       ]);
       return;
     }
@@ -104,19 +117,19 @@ const Feed = () => {
       <div className="tweets-feed">
         <div className="createTweetFeed">
           <div className="username-top-div">
-            <div>
-              <img
-                className="profile-image"
-                src={user.profile_image_url}
-                alt="Profile"
-              />
-            </div>
-            <div className="">{user.username}</div>
-            <div className="at-username">{`@${user.username}`}</div>
+            {/* <div className="">{user.username}</div> */}
+            {/* <div className="at-username">{`@${user.username}`}</div> */}
           </div>
           <div>
             <form className="create-tweet-form" onSubmit={handleSubmit}>
               <div className="whats-happening-div">
+            <div>
+            <img
+              className="profile-image"
+              src={user.profile_image_url}
+              alt="Profile"
+            />
+            </div>
                 <textarea
                   style={{ backgroundColor: "#15202B" }}
                   type="text"

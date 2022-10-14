@@ -27,10 +27,6 @@ const ProfilePage = () => {
   const likes = useSelector((state) => state.likes);
   const profileTweets = userProfile?.tweets?.sort((a,b) => a.id - b.id)
 
-
-  console.log(profileTweets, "profile")
-
-
   useEffect(() => {
     dispatch(getProfileThunk(userId));
     dispatch(getAllLikesThunk());
@@ -64,7 +60,7 @@ const ProfilePage = () => {
   return (
     <div className="user-profile">
       <div className="top-profile-username">{userProfile.profile?.username}</div>
-      <div>{userProfile.tweets?.length} Tweets</div>
+      <div className="top-tweets">{userProfile.tweets?.length} Tweets</div>
       <div className="profile-image-container">
         <img
           className="banner-picture"
