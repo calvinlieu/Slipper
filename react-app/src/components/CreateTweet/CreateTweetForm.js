@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createTweet } from "../../store/tweet";
 import "./CreateTweet.css";
+import { useEffect } from "react";
 
 function CreateTweetForm({ onClick }) {
   const dispatch = useDispatch();
@@ -12,18 +13,18 @@ function CreateTweetForm({ onClick }) {
   const [imageUrl, setImageUrl] = useState("");
   const [errors, setErrors] = useState([]);
 
-  // useEffect(() => {
-  //   const errors = [];
-  //   const imgRegex = new RegExp(
-  //     /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/
-  //   );
-  //   if (imageUrl && !imgRegex.test(imageUrl)) {
-  //     errors.push(
-  //       "Invalid Image Url! URL must contain a .png, .jpg, .jpeg, .gif, .png or .svg!"
-  //     );
-  //   }
-  //   setErrors(errors);
-  // }, [imageUrl]);
+  useEffect(() => {
+    const errors = [];
+    const imgRegex = new RegExp(
+      /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/
+    );
+    if (imageUrl && !imgRegex.test(imageUrl)) {
+      errors.push(
+        "Invalid Image Url! URL must start with https:// and contain a .png, .jpg, .jpeg, .gif, .png or .svg!",
+      );
+    }
+    setErrors(errors);
+  }, [imageUrl]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +34,7 @@ function CreateTweetForm({ onClick }) {
     );
     if (imageUrl && !imgRegex.test(imageUrl)) {
       setErrors([
-        "Invalid Image Url! URL must contain a .png, .jpg, .jpeg, .gif, .png or .svg!",
+        "Invalid Image Url! URL must start with https:// and contain a .png, .jpg, .jpeg, .gif, .png or .svg!",
       ]);
       return;
     }
@@ -77,19 +78,11 @@ function CreateTweetForm({ onClick }) {
       <div className="create-img-container">
         <div className="post-form">
           <div className="user-post-info">
-            {user.profile_image_url ? (
-              <img
-                className="user-post-image"
-                src="https://i.imgur.com/vF8FTS2.png"
-                alt=""
-              />
-            ) : (
-              <img
-                className="user-post-image"
-                src="https://i.imgur.com/vF8FTS2.png"
-                alt="Profile"
-              />
-            )}
+            <img
+              className="profile-image"
+              src={user.profile_image_url}
+              alt="Profile"
+            />
             <div>
               {user.username} {`@${user.username}`}
             </div>

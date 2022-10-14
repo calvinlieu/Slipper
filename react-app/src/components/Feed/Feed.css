@@ -67,7 +67,9 @@
 
 .createTweetFeed {
   width: 520px;
-  border: 1px solid grey;
+  border-bottom: 1px solid grey;
+  border-right: 1px solid grey;
+  border-left: 1px solid grey;
 }
 
 .comments-div {
@@ -152,9 +154,16 @@
   overflow: hidden;
   white-space: pre-wrap;
   word-break: break-all;
-  width: 517px;
+  width: 519px;
   margin-bottom: 5px;
   margin-top: 10px;
+}
+
+.whats-happening-div textarea::placeholder {
+  position: absolute;
+  top: 0;
+  font-size: 20px;
+  margin: 10px;
 }
 
 .img-form-tweet-container input{
@@ -175,3 +184,4 @@
   justify-content: flex-end;
   padding-right: 15px;
 }
+
