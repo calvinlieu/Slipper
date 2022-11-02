@@ -9,13 +9,8 @@ import NavBar from "../NavBar/NavBar";
 import TweetOptionsModal from "../TweetOptions";
 import "./Feed.css";
 import {
-  removeLikeThunk,
   addLikeThunk,
-<<<<<<< HEAD
-=======
-  getTweetLikesThunk,
   removeFeedLikeThunk,
->>>>>>> 594050fb759103691b79621e1cbf872564ce0db2
 } from "../../store/like";
 
 const Feed = () => {
@@ -120,8 +115,6 @@ const Feed = () => {
       <div className="tweets-feed">
         <div className="createTweetFeed">
           <div className="username-top-div">
-            {/* <div className="">{user.username}</div> */}
-            {/* <div className="at-username">{`@${user.username}`}</div> */}
           </div>
           <div>
             <form className="create-tweet-form" onSubmit={handleSubmit}>
