@@ -11,7 +11,6 @@ import "./Feed.css";
 import {
   removeLikeThunk,
   addLikeThunk,
-  getTweetLikesThunk,
 } from "../../store/like";
 
 const Feed = () => {
