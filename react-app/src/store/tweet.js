@@ -2,6 +2,7 @@ const GET_ALL_TWEETS = "tweets/get-user-tweets"
 const UPDATE_TWEET = "tweets/update-tweet"
 const CREATE_TWEET = "tweets/create-tweet"
 const DELETE_TWEET = "tweets/delete-tweet"
+const GET_PROFILE_TWEETS = "tweets/get-profile-tweets"
 
 const addTweet = (tweet) => {
     return {
@@ -17,6 +18,12 @@ const getAllTweets = (allTweets) => {
     }
 }
 
+const getProfileTweets = (userId) => {
+    return {
+        type: GET_PROFILE_TWEETS,
+        userId
+    }
+}
 const updateTweet = (tweet) => {
     return {
         type: UPDATE_TWEET,
@@ -32,7 +39,6 @@ const deleteTweet = (tweetId) => {
 }
 
 //create tweet thunk
-
 export const createTweet = data => async(dispatch) => {
     const {
         description,
@@ -52,6 +58,20 @@ export const createTweet = data => async(dispatch) => {
     const newTweet = await response.json()
     dispatch(addTweet(newTweet))
     return newTweet
+}
+
+//get all profile tweets
+export const getAllProfileTweets = (userId) => async(dispatch) => {
+    const response = await fetch(`/api/tweets/profile/${userId}`)
+    if (response.ok) {
+        const tweet = await response.json();
+        dispatch(getProfileTweets(tweet))
+        const all = {};
+        tweet.tweets.forEach((tweet) => all[tweet.id] = tweet)
+        return {...all}
+    }
+
+    return {}
 }
 
 //get all tweets
@@ -99,6 +119,11 @@ const tweetReducer = (state = initialState, action) => {
         case GET_ALL_TWEETS: {
             const tweets = {};
             action.allTweets.tweets.forEach((tweet) => tweets[tweet.id] = tweet)
+            return tweets
+        }
+        case GET_PROFILE_TWEETS: {
+            const tweets = {};
+            action.userId.tweets.forEach((tweet) => tweets[tweet.id] = tweet)
             return tweets
         }
         case CREATE_TWEET: {

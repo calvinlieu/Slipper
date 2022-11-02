@@ -14,9 +14,9 @@ class User(db.Model, UserMixin):
     bio = db.Column(db.String(150))
     profile_image_url = db.Column(db.String())
     
-    tweet = db.relationship('Tweet', back_populates="user")
-    comments = db.relationship('Comment', back_populates='user')
-    likes = db.relationship('Like', back_populates='user')
+    tweet = db.relationship('Tweet', back_populates="user", cascade="all, delete")
+    comments = db.relationship('Comment', back_populates='user', cascade="all, delete")
+    likes = db.relationship('Like', back_populates='user', cascade="all, delete")
 
     @property
     def password(self):
@@ -36,5 +36,5 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'phone-number': self.phone_number,
             'bio': self.bio,
-            'profile_image_url': self.profile_image_url
+            'profile_image_url': self.profile_image_url,
         }

@@ -56,8 +56,7 @@ const SignUpForm = () => {
       <div className="home-page">
         <img className="splash-image" alt="" src="https://i.imgur.com/Qfj09lS.png" />
         <div className="signup-page">
-          <div className="header">
-            <div>Created By: Calvin Lieu</div>
+          {/* <div className="header">
             <div className="HomePage-LinkedIn">
               <img
                 alt=""
@@ -77,7 +76,7 @@ const SignUpForm = () => {
                 GitHub
               </a>
             </div>
-          </div>
+          </div> */}
           <img
             className="twitter-icon"
             src={TwitterLogo}

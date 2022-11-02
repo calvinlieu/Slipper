@@ -1,12 +1,13 @@
 .splash-image {
   width: 50%;
-  height: 98vh;
   object-fit: cover;
 }
 
 .home-page {
+  margin-top:20px;
   display: flex;
   flex-wrap: wrap;
+  /* height: 100%; */
 }
 
 .twitter-icon {

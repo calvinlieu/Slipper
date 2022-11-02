@@ -2,13 +2,17 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import CreateTweetModal from "../CreateTweet";
+import { useSelector, useDispatch } from "react-redux";
 import "./NavBar.css";
+import { getProfileThunk } from "../../store/profile";
 
 const NavBar = () => {
   const openInNewTab = (url) => {
     // 👇️ setting target to _blank with window.open
     window.open(url, "_blank", "noopener,noreferrer");
   };
+  const user = useSelector((state) => state.session.user)
+
   return (
     <nav className="whole-navbar">
       <ul className="each-item">
@@ -24,9 +28,17 @@ const NavBar = () => {
         <div className="home-btn">
           <NavLink to="/" exact={true} className="home-text">
             <div className="icon">
-            <i class="fa-solid fa-house-chimney-window"></i>
+            <i className="fa-solid fa-house-chimney-window"></i>
             </div>
             Home
+          </NavLink>
+        </div>
+        <div className="home-btn">
+          <NavLink to={`/users/${user.id}`} exact={true} className="home-text">
+            <div className="icon">
+            <i className="fa-solid fa-user"></i>
+            </div>
+            Profile
           </NavLink>
         </div>
         <div

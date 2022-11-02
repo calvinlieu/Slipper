@@ -32,6 +32,10 @@
   border: 1px solid grey;
 }
 
+.each-tweet:hover {
+  background-color: rgba(247, 249, 249, 0.1);
+}
+
 .feed-navbar {
   display: flex;
   position: fixed;
@@ -42,6 +46,8 @@
 .tweet-container {
   text-decoration: none;
 }
+
+
 
 .tweet-container:active {
   background-color: grey;
@@ -57,22 +63,23 @@
   margin-top: 30px;
 }
 
-.username-div {
-  margin-left: 5px;
-}
+
 
 .createTweetFeed {
   width: 520px;
-  border: 1px solid grey;
+  border-bottom: 1px solid grey;
+  border-right: 1px solid grey;
+  border-left: 1px solid grey;
 }
 
 .comments-div {
   display: flex;
   flex-direction: row;
-  letter-spacing: 10px;
   margin-left: 55px;
   margin-top: 10px;
   margin-bottom: 10px;
+  gap: 10px;
+  align-items: center;
 }
 
 
@@ -85,11 +92,19 @@
 .username-div {
   display: flex;
   flex-direction: row;
+  margin-left: 5px;
+  text-decoration: none;
+  color: white;
+}
+
+.username-div:hover {
+  text-decoration: underline;
 }
 
 .at-username {
   margin-left: 5px;
   color: grey;
+  text-decoration: none;
 }
 
 .profile-image {
@@ -139,9 +154,16 @@
   overflow: hidden;
   white-space: pre-wrap;
   word-break: break-all;
-  width: 517px;
+  width: 519px;
   margin-bottom: 5px;
   margin-top: 10px;
+}
+
+.whats-happening-div textarea::placeholder {
+  position: absolute;
+  top: 0;
+  font-size: 20px;
+  margin: 10px;
 }
 
 .img-form-tweet-container input{
@@ -162,3 +184,4 @@
   justify-content: flex-end;
   padding-right: 15px;
 }
+

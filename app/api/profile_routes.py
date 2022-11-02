@@ -22,6 +22,7 @@ def profile_info(user_id):
 
     tweets_list = Tweet.query.filter(Tweet.user_id == user_id).all()
     tweets = [tweet.to_dict() for tweet in tweets_list]
+    
 
     result = {
         'profile': profile.to_dict(),

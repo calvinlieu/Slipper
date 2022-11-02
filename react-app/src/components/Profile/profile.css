@@ -1,0 +1,84 @@
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 175px;
+    border: 1px solid grey;
+}
+
+.profile-image-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 50px;
+    border: 1px solid grey;
+}
+.profile-picture {
+    height: 125px;
+    width: 125px;
+    object-fit: cover;
+    border-radius: 100px;
+    border: 5px solid #15202B;
+    position: absolute;
+    bottom: -50px;
+    left: 20px;
+}
+
+.banner-picture {
+    height: 250px;
+    width: 520px;
+    object-fit: cover;
+    position: relative;
+    
+}
+
+.userName-div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.profile-username {
+    color: rgba(255, 255, 255, 0.951);
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.profile-at-username {
+    color: grey;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+
+.username-info-div {
+    margin-bottom: 30px;
+    
+}
+
+.profile-bio {
+    margin-bottom: 30px;
+    margin-left: 10px;
+}
+
+.profile-follow {
+    display: flex;
+    margin-left: 10px;
+}
+
+.profile-followers {
+    margin-left: 30px;
+}
+
+.top-profile-username {
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.top-tweets {
+    margin-left: 20px;
+    color: grey;
+    margin-bottom: 10px;
+}

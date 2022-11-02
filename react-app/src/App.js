@@ -4,13 +4,12 @@ import { useDispatch } from "react-redux";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
-import User from "./components/User";
 import { authenticate } from "./store/session";
 import Feed from "./components/Feed";
 import CreateTweetForm from "./components/CreateTweet/CreateTweetForm";
 import "./index.css";
 import TweetDetail from "./components/TweetDetails";
+import ProfilePage from "./components/Profile/profile";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -33,13 +32,12 @@ function App() {
         <Route exact path="/sign-up">
           <SignUpForm />
         </Route>
-        <ProtectedRoute exact path="/users">
-          <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute exact path="/users/:userId">
+        <Route exact path="/users/:userId">
+          <div style={{display:"flex"}}>
           <NavBar />
-          <User />
-        </ProtectedRoute>
+          <ProfilePage />
+          </div>
+        </Route>
         <Route exact path="/tweets/create">
           <NavBar />
           <CreateTweetForm />
@@ -51,8 +49,9 @@ function App() {
           <Feed />
         </ProtectedRoute>
         <ProtectedRoute path="*">
-            <div className="pageNotFound">404 Page Not Found</div>
-          </ProtectedRoute>
+          <NavBar />
+          <div className="pageNotFound">404 Page Not Found</div>
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

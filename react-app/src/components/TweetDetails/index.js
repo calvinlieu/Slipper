@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getTweets } from "../../store/tweet";
-import { deleteComment, getComments } from "../../store/comment";
+import {  getComments } from "../../store/comment";
 import "./TweetDetails.css";
 import EditCommentModal from "../EditComment";
+import DeleteCommentModal from "../DeleteComment";
 import TweetOptionsModal from "../TweetOptions";
 import NavBar from "../NavBar/NavBar";
 import CreateCommentModal from "../CreateComment";
@@ -12,7 +13,9 @@ import {
   removeLikeThunk,
   addLikeThunk,
   getTweetLikesThunk,
+  removeFeedLikeThunk,
 } from "../../store/like";
+import { NavLink } from "react-router-dom";
 
 const TweetDetail = () => {
   const dispatch = useDispatch();
@@ -38,7 +41,7 @@ const TweetDetail = () => {
     if (isLoaded && tweets && tweets[tweetId] === undefined) {
       history.push("/");
     }
-  }, [dispatch, tweetString, tweetId]);
+  }, [dispatch, tweetId]);
 
   useEffect(() => {
     Object.values(likes).forEach((like) => {
@@ -48,11 +51,6 @@ const TweetDetail = () => {
       }
     });
   }, [likes]);
-
-  const handleDelete = async (commentId) => {
-    await dispatch(deleteComment(commentId, tweetId));
-    await dispatch(getComments(tweetId));
-  };
 
   const addLikePost = async (tweet, isLiked) => {
     const payload = {
@@ -72,7 +70,7 @@ const TweetDetail = () => {
         likeId = like.id;
       }
     });
-    await dispatch(removeLikeThunk(likeId));
+    await dispatch(removeFeedLikeThunk(likeId));
     dispatch(getTweets());
     isLiked = false;
     setIsLiked(false);
@@ -89,12 +87,12 @@ const TweetDetail = () => {
             <div>
               <img
                 className="profile-image"
-                src="https://i.imgur.com/vF8FTS2.png"
+                src={tweet?.user.profile_image_url}
                 alt="Profile"
               />
             </div>
-            <div className="">{tweet?.user?.username}</div>
-            <div className="individual-username">{`@${tweet?.user?.username}`}</div>
+            <NavLink to={`/users/${tweet?.user?.id}`} className="username-div">{tweet?.user?.username}</NavLink>
+            <NavLink to={`/users/${tweet?.user?.id}`}className="at-username">{`@${tweet?.user?.username}`}</NavLink>
           </div>
           <div className="options-modal">
             <TweetOptionsModal tweet={tweet} />
@@ -116,7 +114,7 @@ const TweetDetail = () => {
           </div>
         )}
         <div className="comments-div">
-          <CreateCommentModal tweet={tweet} /> {tweet?.comments?.length}
+          <CreateCommentModal tweet={tweet} /> {tweetComments.length}
           <div className="likes-div">
             {likes && !isLiked ? (
               <div
@@ -142,7 +140,7 @@ const TweetDetail = () => {
                     <div>
                       <img
                         className="profile-image"
-                        src="https://i.imgur.com/vF8FTS2.png"
+                        src={comments.user.profile_image_url}
                         alt="Profile"
                       />
                     </div>
@@ -157,12 +155,15 @@ const TweetDetail = () => {
                           <div>
                             <EditCommentModal commentId={comments.id} />
                           </div>
-                          <img
+                          <div>
+                            <DeleteCommentModal commentId={comments.id} tweet={tweet.id} />
+                          </div>
+                          {/* <img
                             onClick={() => handleDelete(comments.id)}
                             className="comment-del-btn"
                             src="https://cdn-icons-png.flaticon.com/512/3300/3300464.png"
                             alt=""
-                          />
+                          /> */}
                         </>
                       )}
                     </div>

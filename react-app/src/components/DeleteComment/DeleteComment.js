@@ -1,23 +1,26 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { deleteTweetThunk } from "../../store/tweet";
+import {deleteComment, getComments} from "../../store/comment"
+import { getTweets } from "../../store/tweet";
+import "./DeleteComment.css"
 
-function DeleteComment({ tweet, onClick }) {
+function DeleteComment({ comment, tweet, onClick }) {
   let dispatch = useDispatch();
   let history = useHistory();
 
   const onDelete = () => {
-    dispatch(deleteTweetThunk(tweet.id));
-    history.push("/")
+    dispatch(deleteComment(comment));
+    dispatch(getComments(tweet))
+    dispatch(getTweets(tweet))
   };
 
   return (
     <div className="delete-post">
       <div className="delete-head">
-        <h3 className="delete-top-modal">Delete post?</h3>
+        <h3 className="delete-top-modal">Delete Comment?</h3>
         <div className="confirmation-delete-msg">
-          Are you sure you want to delete this tweet?
+          Are you sure you want to delete this comment?
         </div>
       </div>
       <div className="delete-btns-outer">

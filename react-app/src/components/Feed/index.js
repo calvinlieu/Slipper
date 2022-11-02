@@ -11,6 +11,11 @@ import "./Feed.css";
 import {
   removeLikeThunk,
   addLikeThunk,
+<<<<<<< HEAD
+=======
+  getTweetLikesThunk,
+  removeFeedLikeThunk,
+>>>>>>> 594050fb759103691b79621e1cbf872564ce0db2
 } from "../../store/like";
 
 const Feed = () => {
@@ -22,6 +27,20 @@ const Feed = () => {
   const comments = useSelector((state) => Object.values(state.comments));
   const dispatch = useDispatch();
   const sortedTweets = tweets.sort().reverse();
+
+  useEffect(() => {
+    const errors = [];
+    const imgRegex = new RegExp(
+      /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/
+    );
+    if (imageUrl && !imgRegex.test(imageUrl)) {
+      errors.push(
+        "Invalid Image Url! URL must start with https:// and contain a .png, .jpg, .jpeg, .gif, .png or .svg!",
+      );
+    }
+    setErrors(errors);
+  }, [imageUrl]);
+  
 
   useEffect(() => {
     dispatch(getTweets(tweets.id));
@@ -41,12 +60,13 @@ const Feed = () => {
 
   const removeLikePost = async (isLiked, likes) => {
     let likeId;
+
     Object.values(likes).forEach((like) => {
       if (like.user.id === user.id) {
         likeId = like.id;
       }
     });
-    await dispatch(removeLikeThunk(likeId));
+    await dispatch(removeFeedLikeThunk(likeId));
     dispatch(getTweets());
     isLiked = false;
   };
@@ -59,7 +79,7 @@ const Feed = () => {
 
     if (imageUrl && !imgRegex.test(imageUrl)) {
       setErrors([
-        "Invalid Image Url! URL must contain a .png, .jpg, .jpeg, .gif, .png or .svg!",
+        "Invalid Image Url! URL must start with https:// and contain a .png, .jpg, .jpeg, .gif, .png or .svg!",
       ]);
       return;
     }
@@ -100,19 +120,19 @@ const Feed = () => {
       <div className="tweets-feed">
         <div className="createTweetFeed">
           <div className="username-top-div">
-            <div>
-              <img
-                className="profile-image"
-                src="https://i.imgur.com/vF8FTS2.png"
-                alt="Profile"
-              />
-            </div>
-            <div className="">{user.username}</div>
-            <div className="at-username">{`@${user.username}`}</div>
+            {/* <div className="">{user.username}</div> */}
+            {/* <div className="at-username">{`@${user.username}`}</div> */}
           </div>
           <div>
             <form className="create-tweet-form" onSubmit={handleSubmit}>
               <div className="whats-happening-div">
+            <div>
+            <img
+              className="profile-image"
+              src={user.profile_image_url}
+              alt="Profile"
+            />
+            </div>
                 <textarea
                   style={{ backgroundColor: "#15202B" }}
                   type="text"
@@ -169,17 +189,18 @@ const Feed = () => {
                     <div>
                       <img
                         className="profile-image"
-                        src="https://i.imgur.com/vF8FTS2.png"
+                        src={tweet.user.profile_image_url}
                         alt="Profile"
                       />
                     </div>
-                    <div className="username-div">{tweet.user.username}</div>
-                    <div className="at-username">{`@${tweet.user.username}`}</div>
+                    <NavLink to={`/users/${tweet.user.id}`}className="username-div">{tweet.user.username}</NavLink>
+                    <NavLink to={`/users/${tweet.user.id}`}className="at-username">{`@${tweet.user.username}`}</NavLink>
                   </div>
                   <div>
                     <TweetOptionsModal tweet={tweet} />
                   </div>
                 </div>
+                <div className="tweet-div">
                 <NavLink to={`/tweets/${tweet.id}`} className="tweet-container">
                   <pre className="description">{tweet?.description}</pre>
                   {tweet.image_url && (
@@ -197,6 +218,7 @@ const Feed = () => {
                     </div>
                   )}
                 </NavLink>
+                </div>
                 <div className="comments-div">
                   <CreateCommentModal tweet={tweet} /> {tweet?.comments?.length}
                   <div className="likes-div">

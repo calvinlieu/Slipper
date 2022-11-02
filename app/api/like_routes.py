@@ -6,6 +6,16 @@ from flask_login import current_user
 likes_routes = Blueprint("likes", __name__, url_prefix="/likes")
 
 
+@likes_routes.route('/', methods=["GET"])
+def get_all_likes():
+    if (current_user):
+        all_likes = Like.query.all()
+        like = [like.to_dict() for like in all_likes]
+        response = {"likes": like}
+        return response
+    else:
+        return "Unauthorized User!"
+
 @likes_routes.route('/tweets/<tweet_id>')
 def get_likes(tweet_id):
     likes = Like.query.filter(Like.tweet_id == tweet_id).all()
@@ -14,7 +24,7 @@ def get_likes(tweet_id):
 
 @likes_routes.route('/', methods=["POST"])
 def like():
-    if not current_user.is_authenticated: # beginning of error handling(is_authenticated is a boolean not a function)
+    if not current_user.is_authenticated:
         return { 'errors': ['Unauthorized, please log in'] }
 
     form = LikeForm()

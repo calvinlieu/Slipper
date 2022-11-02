@@ -134,10 +134,10 @@
   margin-top: 10px;
 }
 
-.caption-div input::placeholder {
+.caption-div textarea::placeholder {
   position: absolute;
   top: 0;
-  font-size: 14px;
+  font-size: 20px;
   margin: 10px;
 }
 
