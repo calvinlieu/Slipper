@@ -14,20 +14,6 @@ function TweetOptions({ tweet, onClick }) {
         onClick()
     }
 
-    // const toggleComments = async () => {
-    //     const payload = {
-    //         user_id: user.id,
-    //         description: tweet.description,
-    //         image_url: tweet.image_url,
-    //         display_comments: !tweet.display_comments
-    //     }
-
-    //     let updatedPost = await dispatch(updateTweetThunk(payload, tweet.id))
-    //     if (updatedPost) {
-    //         onClick()
-    //     }
-    // }
-
     const copyLink = (tweet) => {
         let copiedLink = `https://slipper-capstone.herokuapp.com/tweets/${tweet.id}`
         navigator.clipboard.writeText(copiedLink)
