@@ -158,12 +158,6 @@ const TweetDetail = () => {
                           <div>
                             <DeleteCommentModal commentId={comments.id} tweet={tweet.id} />
                           </div>
-                          {/* <img
-                            onClick={() => handleDelete(comments.id)}
-                            className="comment-del-btn"
-                            src="https://cdn-icons-png.flaticon.com/512/3300/3300464.png"
-                            alt=""
-                          /> */}
                         </>
                       )}
                     </div>

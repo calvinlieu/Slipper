@@ -12,24 +12,6 @@ const CommentForm = ({ tweet, onClick }) => {
   const [content, setContent] = useState("");
   const [errors, setErrors] = useState([]);
 
-  // useEffect(() => {
-  //   const newErrors = [];
-  //   if (content?.length > 280) {
-  //     newErrors.push("Comment length of 280 characters exceeded!");
-  //   }
-  //   if (content.length < 4) {
-  //     newErrors.push("Comment must be more than 4 characters!");
-  //   }
-  //   if (!content) {
-  //     newErrors.push("Comment is required!");
-  //   }
-  //   if (newErrors.length) {
-  //     setErrors(newErrors);
-  //   } else {
-  //     setErrors([]);
-  //   }
-  // }, [content]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
