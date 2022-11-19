@@ -41,6 +41,5 @@ Slipper is a full stack application that is inspired by Twitter, an online socia
 ![image](https://user-images.githubusercontent.com/98150408/189447510-da024ecb-20c4-4727-9f75-a358600eaa8f.png)
 
 * Possible Features in The Future:
-  * Liking tweets and following other Users.
   * User settings such as Direct Messaging and security features.
   
